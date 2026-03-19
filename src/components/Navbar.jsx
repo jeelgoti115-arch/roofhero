@@ -76,6 +76,7 @@ const Navbar = () => {
                 <a href="#contact1">Contact 1</a>
                 <a href="#contact2">Contact 2</a>
                 <a href="#contact3">Contact 3</a>
+                <a href="#contact3">Contact 4</a>
               </div>
             )}
           </div>
