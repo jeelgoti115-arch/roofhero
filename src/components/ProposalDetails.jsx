@@ -11,6 +11,11 @@ import r6 from '/r6.jpg';
 const ProposalDetails = () => {
   const galleryImages = [r1, r2, r3, r4, r5, r6];
   const [isModalOpen, setIsModalOpen] = useState(false); // State for modal
+  const [isModalOpen1, setIsModalOpen1] = useState(false); // State for modal
+
+  const handleButtonClick = () => {
+    setIsModalOpen1(false); // Close the modal first
+  };
 
   return (
     <div className="white-card-box">
@@ -58,7 +63,7 @@ const ProposalDetails = () => {
             <span className="val-bold">$143.3</span>
           </div>
 
-          <button className="accept-quote-btn-lg">Accept Quote <RiArrowRightUpLine size={18} /></button>
+          <button className="accept-quote-btn-lg" onClick={() => setIsModalOpen1(true)}>Accept Quote <RiArrowRightUpLine size={18} /></button>
           <button className="cancel-quote-link" onClick={() => setIsModalOpen(true)}>Cancel Quote</button>
         </div>
       </div>
@@ -77,12 +82,12 @@ const ProposalDetails = () => {
         </div>
       </div>
 
-      {/* --- SUCCESS MODAL OVERLAY --- */}
+      {/* --- CANCEL MODAL OVERLAY --- */}
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal-box">
             <div className="modal-icon-container">
-               <img src=" /bidcard-qr.svg" alt="Success" />
+               <img src="public/bidcard-qr.svg" alt="Success" />
             </div>
             <h2>Are you sure you want to reject this contractor?</h2>
             <p>
@@ -99,6 +104,25 @@ const ProposalDetails = () => {
           </div>
         </div>
       )}
+
+      {/* --- SUCCESS MODAL OVERLAY --- */}
+            {isModalOpen1 && (
+              <div className="modal-overlay">
+                <div className="modal-box">
+                  <div className="modal-icon-container">
+                     <img src="public/bidcard-qa.svg" alt="Success" />
+                  </div>
+                  <h2>Quote Accepted Successfully</h2>
+                  <p>
+                    Your roofing project has been confirmed. The selected contractor 
+                    will contact you soon to coordinate the next steps and schedule the site visit.
+                  </p>
+                  <button className="modal-btn" onClick={handleButtonClick}>
+                    Accept Bid <RiArrowRightUpLine size={18} />
+                  </button>
+                </div>
+              </div>
+            )}
     </div>
   );
 };

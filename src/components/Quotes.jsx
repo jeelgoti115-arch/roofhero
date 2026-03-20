@@ -4,32 +4,32 @@ import React from 'react'
 const Quotes = () => {
     const quoteData = [
         {
-            img: ' /reports.png',
+            img: 'public/reports.png',
             title: 'Precision in Seconds',
             desc: 'AI-powered satellite reports delivered instantly—no site visit needed.'
         },
         {
-            img: ' /roofers.png',
+            img: 'public/roofers.png',
             title: 'Trusted Roofing Professionals',
             desc: 'Only licensed, experienced roofers with proven local track records.'
         },
         {
-            img: ' /connect.png',
+            img: 'public/connect.png',
             title: 'Free to Connect',
             desc: "Zero fees to connect with Sydney's top-rated roofing professionals."
         },
         {
-            img: ' /ai.png',
+            img: 'public/ai.png',
             title: 'AI-Powered Matching',
             desc: 'Smart tech matches you with the most suitable roofing specialists.'
         },
         {
-            img: ' /Signature.png',
+            img: 'public/Signature.png',
             title: 'Zero Obligation, Zero Risk',
             desc: 'Receive detailed quotes and choose if and when to proceed.'
         },
         {
-            img: ' /rate.png',
+            img: 'public/rate.png',
             title: 'Highest Standards',
             desc: 'Only 4.8+ star rated roofing contractors trusted by homeowners.'
         }
@@ -41,7 +41,7 @@ const Quotes = () => {
                 <div className='sub-quote-header'>
                     <p>
                         Smart Roofing, Simplified
-                        <img src=' /smart_roofing_arrow.svg' alt='arrow' className='tag-logo' />
+                        <img src='public/smart_roofing_arrow.svg' alt='arrow' className='tag-logo' />
                     </p>
                     <h1>Instant Quotes. Vetted Roofers. Best Prices.</h1>
                 </div>

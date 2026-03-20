@@ -14,7 +14,7 @@ const Logbox = () => {
     console.log("Login successful, redirecting...");
     
     // 2. Redirect to the HomeOwner dashboard
-    navigate('/homeowner'); 
+    navigate('/dashboard'); 
     
     // 3. Optional: Force a window refresh if Navbar doesn't update immediately
     // window.location.reload(); 
@@ -22,7 +22,7 @@ const Logbox = () => {
 
   return (
     <div className='login-section'>
-      <img src=' /hero-bg.png' alt='logo' className='login-logo'/>
+      <img src='public/hero-bg.png' alt='logo' className='login-logo'/>
       
       <div className='login-card'>
         <div className='login-header'>

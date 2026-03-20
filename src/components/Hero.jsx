@@ -1,14 +1,21 @@
 import { RiArrowRightUpLine } from '@remixicon/react'
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const Hero = () => {
+  const navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    navigate('/homeowner');
+  };
+
   return (
     <div className='hero'>
       <div className='left-box'>
         <div className='hero-text'>
           <h1>Get Multiple Quotes from Sydney's Best Roofers</h1>
           <p>RoofHero makes roofing simple - trusted pros compete for your job with fast, transparent quotes.</p>
-          <button className="cta-btn-hero">
+          <button className="cta-btn-hero" onClick={handleButtonClick}>
             Find Trusted Contractors
             <RiArrowRightUpLine size={20} />
           </button>

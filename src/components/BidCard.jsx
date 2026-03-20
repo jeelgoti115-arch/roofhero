@@ -13,13 +13,13 @@ const BidCard = () => {
   };
 
   const contractors = [
-    { id: 1, name: "Matthew Plunkett", image: " /contractor1.jpg", price: "9,200", rating: "4.7", contractorId: "#RPH-2025-00123", pricePerSq: "143", isRejected: false },
-    { id: 2, name: "Madeline Joyner", image: " /contractor2.jpg", price: "9,200", rating: "4.7", contractorId: "#RPH-2025-00123", pricePerSq: "143", isRejected: true },
-    { id: 3, name: "Matthew Plunkett", image: " /contractor1.jpg", price: "9,200", rating: "4.7", contractorId: "#RPH-2025-00123", pricePerSq: "143", isRejected: false },
-    { id: 4, name: "Sarah Walker", image: " /contractor2.jpg", price: "8,500", rating: "4.9", contractorId: "#RPH-2025-00124", pricePerSq: "130", isRejected: true },
-    { id: 5, name: "Kane Williamson", image: " /contractor1.jpg", price: "9,800", rating: "4.5", contractorId: "#RPH-2025-00125", pricePerSq: "155", isRejected: false },
-    { id: 6, name: "Novak Djokovic", image: " /contractor2.jpg", price: "9,300", rating: "5.0", contractorId: "#RPH-2025-00123", pricePerSq: "144", isRejected: false },
-    { id: 7, name: "Rafael Nadal", image: " /contractor1.jpg", price: "8,200", rating: "4.7", contractorId: "#RPH-2025-00123", pricePerSq: "147", isRejected: false },
+    { id: 1, name: "Matthew Plunkett", image: "public/contractor1.jpg", price: "9,200", rating: "4.7", contractorId: "#RPH-2025-00123", pricePerSq: "143", isRejected: false },
+    { id: 2, name: "Madeline Joyner", image: "public/contractor2.jpg", price: "9,200", rating: "4.7", contractorId: "#RPH-2025-00123", pricePerSq: "143", isRejected: true },
+    { id: 3, name: "Matthew Plunkett", image: "public/contractor1.jpg", price: "9,200", rating: "4.7", contractorId: "#RPH-2025-00123", pricePerSq: "143", isRejected: false },
+    { id: 4, name: "Sarah Walker", image: "public/contractor2.jpg", price: "8,500", rating: "4.9", contractorId: "#RPH-2025-00124", pricePerSq: "130", isRejected: true },
+    { id: 5, name: "Kane Williamson", image: "public/contractor1.jpg", price: "9,800", rating: "4.5", contractorId: "#RPH-2025-00125", pricePerSq: "155", isRejected: false },
+    { id: 6, name: "Novak Djokovic", image: "public/contractor2.jpg", price: "9,300", rating: "5.0", contractorId: "#RPH-2025-00123", pricePerSq: "144", isRejected: false },
+    { id: 7, name: "Rafael Nadal", image: "public/contractor1.jpg", price: "8,200", rating: "4.7", contractorId: "#RPH-2025-00123", pricePerSq: "147", isRejected: false },
   ];
 
   const scroll = (direction) => {
@@ -49,7 +49,7 @@ const BidCard = () => {
                 <div className="user-text">
                   <h4>{item.name}</h4>
                   <div className="rating-row">
-                    <img src=" /star-ic-rating.png" alt="star" className='star'/>
+                    <img src="public/star-ic-rating.png" alt="star" className='star'/>
                     <span className="rating-label">{item.rating} (128 reviews)</span>
                   </div>
                 </div>
@@ -96,7 +96,7 @@ const BidCard = () => {
         <div className="modal-overlay">
           <div className="modal-box">
             <div className="modal-icon-container">
-               <img src=" /bidcard-qa.svg" alt="Success" />
+               <img src="public/bidcard-qa.svg" alt="Success" />
             </div>
             <h2>Quote Accepted Successfully</h2>
             <p>

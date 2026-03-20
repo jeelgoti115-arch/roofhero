@@ -338,7 +338,6 @@
   color: #a0a0a0;
   cursor: pointer;
   position: relative;
-  transition: all 0.2s ease;
 }
 
 .tab-btn-item.active {

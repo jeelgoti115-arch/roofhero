@@ -1,7 +1,15 @@
 import React from 'react';
 import { RiDashboardFill, RiLogoutBoxRLine } from '@remixicon/react';
+import { useNavigate } from 'react-router-dom';
 
 const Sidebar = ({ isOpen }) => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('isAuthenticated'); // Clear the session
+    navigate('/'); // Redirect to home
+  };
+
   return (
     <div className={`sidebar ${isOpen ? 'open' : 'closed'}`}>
       <div className="sidebar-logo">
@@ -16,7 +24,7 @@ const Sidebar = ({ isOpen }) => {
       </div>
 
       <div className="sidebar-footer">
-        <button className="logout-btn" onClick={() => localStorage.removeItem('isAuthenticated')}>
+        <button className="logout-btn" onClick={handleLogout}>
           <RiLogoutBoxRLine size={20} />
           <span>Logout</span>
         </button>

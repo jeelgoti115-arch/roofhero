@@ -12,12 +12,12 @@ const ProjectDetails = () => {
       <h2>Project details</h2>
       <div className="card-user-header">
         <div className="user-info">
-          <img src=" /dashboard1-profile.png" alt="Samantha" className="user-img" />
+          <img src="public/dashboard1-profile.png" alt="Samantha" className="user-img" />
           <div>
             <h3>Samantha Hollick</h3>
             <p>
-              <img src=' /mail_ic.png' alt='mail' className='user-icons' /> JasperCanning@dayrep.com | 
-              <img src=' /Call_ic.png' alt='call' className='user-icons' /> 937-304-8161
+              <img src='public/mail_ic.png' alt='mail' className='user-icons' /> JasperCanning@dayrep.com | 
+              <img src='public/Call_ic.png' alt='call' className='user-icons' /> 937-304-8161
             </p>
           </div>
         </div>
@@ -66,7 +66,7 @@ const ProjectDetails = () => {
           {[1, 2, 3].map((_, i) => (
             <div key={i} className="doc-card">
               <div className="doc-icon-box">
-                <img src=" /pdf_ic.png" alt="pdf" />
+                <img src="public/pdf_ic.png" alt="pdf" />
               </div>
               <div className="doc-info">
                 <h4>RooferCoinsurance.pdf</h4>

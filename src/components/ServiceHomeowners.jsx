@@ -6,7 +6,7 @@ const ServiceHomeowners = () => {
       <div className='sho-container'>
         <div className='sho-left-box'>
           <img 
-            src=" /Rectangle-56789.png" 
+            src="public/Rectangle-56789.png" 
             alt="Roofing in Bondi" 
             className='sho-img' 
           />

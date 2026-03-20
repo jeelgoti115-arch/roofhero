@@ -50,7 +50,7 @@ const ServiceCard9 = () => {
         <div className='sc9-success-overlay'>
           <div className='sc9-success-modal'>
             <div className='success-icon-container'>
-              <img src=" /success-envelope.svg" alt="Success Icon" className="success-icon" />
+              <img src="public/success-envelope.svg" alt="Success Icon" className="success-icon" />
             </div>
             
             <h2>Thanks, You’re All Set!</h2>

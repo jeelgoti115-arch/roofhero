@@ -8,7 +8,7 @@ const Solutions = () => {
         <div className='left-box-solutions'>
           <p className='section-tag'>
             SOLUTIONS 
-            <img src=' /OBJECTS.svg' alt='logo' className='tag-logo' />
+            <img src='public/OBJECTS.svg' alt='logo' className='tag-logo' />
           </p>
           <h1>Our Roof Replacement Solutions</h1>
           <div className='text-content'>
