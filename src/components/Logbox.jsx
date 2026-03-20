@@ -1,23 +1,16 @@
-import { RiArrowRightUpLine } from '@remixicon/react'
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { RiArrowRightUpLine, RiCheckboxCircleFill } from '@remixicon/react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Logbox = () => {
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    
-    // 1. Simulate login by saving a flag in localStorage
+
     localStorage.setItem('isAuthenticated', 'true');
-    
-    console.log("Login successful, redirecting...");
-    
-    // 2. Redirect to the HomeOwner dashboard
+
     navigate('/dashboard'); 
-    
-    // 3. Optional: Force a window refresh if Navbar doesn't update immediately
-    // window.location.reload(); 
   };
 
   return (

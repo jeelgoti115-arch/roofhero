@@ -1,0 +1,234 @@
+.dashboard-main-content {
+  flex: 1;
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-height: 100vh;
+  background-color: #fff;
+}
+
+/* Apply this class to the parent wrapper in AdminDash.jsx */
+.sidebar-open .dashboard-main-content {
+  margin-left: 260px; /* Match the sidebar width */
+}
+
+.sidebar-closed .dashboard-main-content {
+  margin-left: 0;
+}
+
+/* Logo Sizing */
+.adm-sb-logo-section {
+  padding: 30px 20px;
+}
+
+.adm-sb-logo-section img {
+  width: 140px; /* Scaled down for the 260px width */
+}
+
+/* Header */
+.adm-hdr-container {
+  height: 70px;
+  background-color: #f9f9f9; /* Matching sidebar light grey */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  z-index: 1005;
+}
+
+/* Left Section */
+.adm-hdr-menu-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #122621;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.adm-hdr-menu-btn:hover {
+  background-color: #f0f0f0;
+}
+
+/* Right Section */
+.adm-hdr-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.adm-hdr-noti-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  padding: 0;
+}
+
+.adm-hdr-icon-circle {
+  width: 42px;
+  height: 42px;
+  background-color: #ededed; /* Light grey circle from image */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #122621;
+  transition: all 0.2s ease;
+}
+
+.adm-hdr-noti-btn:hover .adm-hdr-icon-circle {
+  background-color: #e2e2e2;
+}
+
+/* Red Notification Dot */
+.adm-hdr-dot {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 10px;
+  height: 10px;
+  background-color: #ff5c28; /* Your signature orange/red */
+  border: 2px solid #f9f9f9;
+  border-radius: 50%;
+}
+
+/* Profile Avatar */
+.adm-hdr-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #eee;
+}
+
+/* Active State for Notifications */
+.adm-hdr-active .adm-hdr-icon-circle {
+  background-color: #122621;
+  color: #ffffff;
+}
+
+.adm-hdr-active .adm-hdr-dot {
+  border-color: #122621;
+}
+/* Sidebar Container */
+.adm-sb-container {
+  background-color: #f9f9f9 !important;
+  height: 100vh;
+  max-width: 260px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #e0e0e0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.adm-sb-logo-section {
+  padding: 40px 25px;
+}
+
+.adm-sb-logo-section img {
+  max-width: 100%;
+  height: auto;
+}
+
+.animate-fade {
+  animation: fadeIn 0.4s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.adm-sb-logo-img {
+  width: 160px;
+  display: block;
+}
+
+/* Menu List */
+.adm-sb-menu-list {
+  flex: 1;
+  padding: 0 15px;
+}
+
+/* Default State (Visible Dark Text) */
+.adm-sb-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  cursor: pointer;
+  margin-bottom: 6px;
+  transition: all 0.2s ease-in-out;
+  border-radius: 12px;
+}
+
+/* Active State Fix */
+.adm-sb-nav-item.active {
+  background-color: #122621 ;
+  color: #ffffff;
+  border-radius: 12px;
+}
+
+/* --- FOOTER & LOGOUT --- */
+.adm-sb-footer-section {
+  padding: 25px 15px;
+  border-top: 1px solid #eee;
+}
+
+.adm-sb-logout-action {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 12px;
+  
+  /* Red Styling */
+  color: #ff4d4d !important;
+  fill: #ff4d4d !important;
+}
+
+.adm-sb-logout-text {
+  font-size: 15px;
+  font-weight: 700;
+  color: #ff4d4d !important;
+}
+
+.adm-sb-logout-action svg {
+  color: #ff4d4d !important;
+  fill: #ff4d4d !important;
+}
+
+.adm-sb-logout-action:hover {
+  background-color: #fff5f5;
+}
+
+/* Toggle States */
+.adm-sb-closed {
+  transform: translateX(0);
+}
+
+.adm-sb-open {
+  transform: translateX(-100%);
+}
+
+@media (min-width: 1024px) {
+  .adm-sb-closed {
+    transform: translateX(0); /* Always show on desktop */
+  }
+
+  .sb-open .adm-main-container {
+    margin-left: 0; /* On small screens, overlay the sidebar instead of pushing content */
+  }
+}

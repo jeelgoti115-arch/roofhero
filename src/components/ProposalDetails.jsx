@@ -1,6 +1,7 @@
-import { RiArrowRightUpLine } from '@remixicon/react';
+import { RiArrowRightUpLine, RiErrorWarningFill } from '@remixicon/react';
 import React, { useState } from 'react';
 
+// Assuming these are in your assets or public folder
 import r1 from '/r1.jpg';
 import r2 from '/r2.jpg';
 import r3 from '/r3.jpg';
@@ -10,11 +11,23 @@ import r6 from '/r6.jpg';
 
 const ProposalDetails = () => {
   const galleryImages = [r1, r2, r3, r4, r5, r6];
-  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal
-  const [isModalOpen1, setIsModalOpen1] = useState(false); // State for modal
+  
+  // --- STATES ---
+  const [isModalOpen, setIsModalOpen] = useState(false);  // Reject Modal
+  const [isModalOpen1, setIsModalOpen1] = useState(false); // Accept Modal
+  
+  // Status can be: 'active', 'accepted', 'rejected'
+  const [contractorStatus, setContractorStatus] = useState('active');
 
-  const handleButtonClick = () => {
-    setIsModalOpen1(false); // Close the modal first
+  // --- HANDLERS ---
+  const handleAcceptContractor = () => {
+    setContractorStatus('accepted');
+    setIsModalOpen1(false);
+  };
+
+  const handleRejectContractor = () => {
+    setContractorStatus('rejected');
+    setIsModalOpen(false);
   };
 
   return (
@@ -31,19 +44,11 @@ const ProposalDetails = () => {
             <p>
               Thank you for the opportunity to quote on your roofing project at 27 Rosebay Street. 
               Based on the project scope and details provided, we recommend a complete tile-to-Colorbond 
-              metal roof replacement. The materials we use are premium-grade, designed for durability 
-              and resistance to harsh weather conditions.
+              metal roof replacement.
             </p>
             <p>
               Our licensed and experienced team will start by safely removing the existing roof tiles. 
-              We will thoroughly inspect the roof's substructure for any damage or weak spots, and 
-              perform minor repairs if necessary. Once the base is secure, we will install the new 
-              Colorbond roofing system with precision, ensuring a clean, weather-sealed finish.
-            </p>
-            <p>
-              To ensure safety and cleanliness throughout the project, all required scaffolding and 
-              site protection measures are included in the quote. Upon completion, we will perform 
-              a full site cleanup, leaving your property neat and ready to enjoy your new roof.
+              We will thoroughly inspect the roof's substructure for any damage or weak spots.
             </p>
           </div>
         </div>
@@ -63,8 +68,33 @@ const ProposalDetails = () => {
             <span className="val-bold">$143.3</span>
           </div>
 
-          <button className="accept-quote-btn-lg" onClick={() => setIsModalOpen1(true)}>Accept Quote <RiArrowRightUpLine size={18} /></button>
-          <button className="cancel-quote-link" onClick={() => setIsModalOpen(true)}>Cancel Quote</button>
+          {/* --- CONDITIONAL RENDERING BASED ON STATUS --- */}
+          <div className="action-area-pd">
+            {contractorStatus === 'active' && (
+              <>
+                <button className="accept-quote-btn-lg" onClick={() => setIsModalOpen1(true)}>
+                  Accept Quote <RiArrowRightUpLine size={18} />
+                </button>
+                <button className="cancel-quote-link" onClick={() => setIsModalOpen(true)}>
+                  Cancel Quote
+                </button>
+              </>
+            )}
+
+            {contractorStatus === 'rejected' && (
+              <div className="status-message-rejected">
+                <RiErrorWarningFill size={20} color="#fa5a25" />
+                <span>Contractor has been rejected.</span>
+              </div>
+            )}
+
+            {contractorStatus === 'accepted' && (
+              <div className="status-message-accepted">
+                <span className="success-check">✔</span>
+                <span>Contractor has been accepted.</span>
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
@@ -77,52 +107,58 @@ const ProposalDetails = () => {
             key={index} 
             src={imgSrc} 
             alt={`Project ${index + 1}`} 
-            className="gallery-thumb" ></img>
+            className="gallery-thumb" 
+          />
           ))}
         </div>
       </div>
 
-      {/* --- CANCEL MODAL OVERLAY --- */}
+      {/* --- REJECT MODAL OVERLAY --- */}
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal-box">
             <div className="modal-icon-container">
-               <img src="public/bidcard-qr.svg" alt="Success" />
+               <img src="public/bidcard-qr.svg" alt="Reject" />
             </div>
             <h2>Are you sure you want to reject this contractor?</h2>
             <p>
               If you reject this contractor, they will no longer be able to bid or work on your job. This action cannot be undone.
             </p>
             <div className='modal-btns'>
-              <button className="modal-btn" onClick={() => setIsModalOpen(false)}>
-                cancel
+              <button className="modal-btn-outline" onClick={() => setIsModalOpen(false)}>
+                Cancel
               </button>
-              <button className="modal-btn">
-              Yes, Reject Contractor <RiArrowRightUpLine size={18} />
+              <button className="modal-btn-reject" onClick={handleRejectContractor}>
+                Yes, Reject Contractor <RiArrowRightUpLine size={18} />
               </button>
             </div>
           </div>
         </div>
       )}
 
-      {/* --- SUCCESS MODAL OVERLAY --- */}
-            {isModalOpen1 && (
-              <div className="modal-overlay">
-                <div className="modal-box">
-                  <div className="modal-icon-container">
-                     <img src="public/bidcard-qa.svg" alt="Success" />
-                  </div>
-                  <h2>Quote Accepted Successfully</h2>
-                  <p>
-                    Your roofing project has been confirmed. The selected contractor 
-                    will contact you soon to coordinate the next steps and schedule the site visit.
-                  </p>
-                  <button className="modal-btn" onClick={handleButtonClick}>
-                    Accept Bid <RiArrowRightUpLine size={18} />
-                  </button>
-                </div>
-              </div>
-            )}
+      {/* --- SUCCESS (ACCEPT) MODAL OVERLAY --- */}
+      {isModalOpen1 && (
+        <div className="modal-overlay">
+          <div className="modal-box">
+            <div className="modal-icon-container">
+               <img src="public/bidcard-qa.svg" alt="Success" />
+            </div>
+            <h2>Quote Accepted Successfully</h2>
+            <p>
+              Your roofing project has been confirmed. The selected contractor 
+              will contact you soon to coordinate the next steps.
+            </p>
+            <div className='modal-btns'>
+               <button className="modal-btn-outline" onClick={() => setIsModalOpen1(false)}>
+                 Cancel
+               </button>
+               <button className="modal-btn" onClick={handleAcceptContractor}>
+                 Accept Bid <RiArrowRightUpLine size={18} />
+               </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

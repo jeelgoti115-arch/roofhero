@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Accordion from './Accordion';
+import { RiCloseCircleLine } from '@remixicon/react';
 
 const ProjectDetails = () => {
-  const images = [
-    ' /roof1.jpg', ' /roof2.jpg', 
-    ' /roof3.jpg', ' /roof4.jpg'
-  ];
+  // Track which section is open by its title string
+  const [openSection, setOpenSection] = useState('Basic Information');
+
+  const handleToggle = (title) => {
+    // If clicking the one already open, close it (set to null), otherwise open the new one
+    setOpenSection(openSection === title ? null : title);
+  };
+
+  const images = ['/roof1.jpg', '/roof2.jpg', '/roof3.jpg', '/roof4.jpg'];
 
   return (
     <div className="project-details-card">
@@ -34,7 +40,11 @@ const ProjectDetails = () => {
       </div>
 
       {/* 1. Basic Information Section */}
-      <Accordion title="Basic Information" defaultOpen={false}>
+      <Accordion 
+        title="Basic Information" 
+        isOpen={openSection === "Basic Information"} 
+        onToggle={() => handleToggle("Basic Information")}
+      >
         <div className="info-grid">
           <div className="info-item-pd"><p>Project ID:</p> <span>RH-JOB-2025-0148</span></div>
           <div className="info-item-pd"><p>Property Address:</p> <span>27 Rosebay Street, Bondi, NSW 2026</span></div>
@@ -49,7 +59,11 @@ const ProjectDetails = () => {
       </Accordion>
 
       {/* 2. Automated Quoting Section */}
-      <Accordion title="Automated Quoting">
+      <Accordion 
+        title="Automated Quoting" 
+        isOpen={openSection === "Automated Quoting"} 
+        onToggle={() => handleToggle("Automated Quoting")}
+      >
         <div className="quoting-grid">
           <div className="quote-row">
             <p>Automated Quoting:</p>
@@ -61,7 +75,11 @@ const ProjectDetails = () => {
       </Accordion>
 
       {/* 3. Documents Section */}
-      <Accordion title="Documents">
+      <Accordion 
+        title="Documents" 
+        isOpen={openSection === "Documents"} 
+        onToggle={() => handleToggle("Documents")}
+      >
         <div className="documents-grid">
           {[1, 2, 3].map((_, i) => (
             <div key={i} className="doc-card">
@@ -72,7 +90,7 @@ const ProjectDetails = () => {
                 <h4>RooferCoinsurance.pdf</h4>
                 <p>  Liability Insurance</p>
               </div>
-              <button className="doc-remove-btn">ⓧ</button>
+              <button className="doc-remove-btn"><RiCloseCircleLine /></button>
             </div>
           ))}
         </div>

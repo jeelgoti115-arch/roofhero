@@ -1,18 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { RiArrowDownSLine, RiArrowUpSLine } from '@remixicon/react';
 
-const Accordion = ({ title, children, defaultOpen = false }) => {
-  const [isOpen, setIsOpen] = useState(defaultOpen);
-
+const Accordion = ({ title, children, isOpen, onToggle }) => {
   return (
     <div className="accordion-wrapper">
-      <div className="accordion-header" onClick={() => setIsOpen(!isOpen)}>
+      <div className="accordion-header" onClick={onToggle}>
         <h4>{title}</h4>
-        <div className={`arrow-circle ${isOpen ? 'active' : ''}`}>
+        {/* If open, circle is dark green; if closed, circle is orange as per your image */}
+        <div className={`arrow-circle ${isOpen ? 'active' : 'closed-style'}`}>
           {isOpen ? <RiArrowUpSLine /> : <RiArrowDownSLine />}
         </div>
       </div>
-      {isOpen && <div className="accordion-body">{children}</div>}
+      {isOpen && <div className="accordion-body animate-fade">{children}</div>}
     </div>
   );
 };

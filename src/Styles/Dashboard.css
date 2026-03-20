@@ -315,6 +315,7 @@
   width: 100%;
   height: 120px;
   object-fit: cover;
+  border-radius: 8px;
 }
 
 /* ============================================================
@@ -708,11 +709,11 @@
   justify-content: center;
   background: #fa5a25; /* Orange when closed */
   color: #fff;
-  transition: 0.3s;
 }
 
 .arrow-circle.active {
-  background: #12201d; /* Dark Green when open */
+  background: #122621; /* Dark Green when open */
+  transform: rotate(0deg);
 }
 
 /* --- 1. Basic Info Grid --- */

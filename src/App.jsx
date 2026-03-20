@@ -8,6 +8,8 @@ import Services from './pages/Services';
 import Dashboard from './pages/Dashboard';
 import OpenProjectDetails from './pages/OpenProjectDetails';
 import ScrollToTop from './components/ScrollToTop';
+import AdminDash from './pages/AdminDash';
+import ContractorDash from './pages/ContractorDash';
 
 const App = () => {
 
@@ -21,6 +23,8 @@ const App = () => {
         <Route path="/services" element={<Services />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/project-details" element={<OpenProjectDetails />} />
+        <Route path="/admin" element={<AdminDash />} />
+        <Route path="/contractor" element={<ContractorDash />} />
       </Routes>
     </Router>
   );

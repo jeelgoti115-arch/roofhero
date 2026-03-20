@@ -18,12 +18,12 @@ const ServiceHero = () => {
 					<h1>Roof Replacement in Bondi</h1>
 					<p className='hero-subtitle'>Instant roof estimate • 3 free quotes • Bondi’s coastal-proof roofing experts</p>
 					
-					<div className='hero-input-area'>
-						<textarea placeholder='Enter Address' className='textarea'></textarea>
-						<button className='cta-btn-service' type='submit' onClick={handleQuoteClick} >
+					<form className='hero-input-area' onSubmit={handleQuoteClick}>
+						<input type='text' placeholder='Enter Address' className='textarea' required></input>
+						<button className='cta-btn-service' type='submit'>
 							Get Instant Estimate <RiArrowRightUpLine size={20} />
 						</button>
-					</div>
+					</form>
 				</div>
 			</div>
 
