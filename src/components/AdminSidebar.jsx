@@ -18,11 +18,11 @@ const AdminSidebar = ({ isOpen, activeTab, setActiveTab }) => {
   };
 
   const menuItems = [
-    { id: 'dashboard', label: 'Dashboard', icon: <RiLayoutGridFill size={20} /> },
-    { id: 'contractor', label: 'Contractor Management', icon: <RiUserSettingsLine size={20} /> },
-    { id: 'homeowner', label: 'Homeowner Management', icon: <RiUserFollowLine size={20} /> },
-    { id: 'jobs', label: 'Job & Bidding Pipeline', icon: <RiBriefcase4Line size={20} /> },
-    { id: 'pricing', label: 'Pricing Logic Management', icon: <RiMoneyDollarBoxLine size={20} /> },
+    { id: 'dashboard', label: 'Dashboard', img: 'public/dashbord_ic.svg' },
+    { id: 'contractor', label: 'Contractor Management', img: 'public/contractor_ic.svg' },
+    { id: 'homeowner', label: 'Homeowner Management', img: 'public/profile_ic.svg' },
+    { id: 'jobs', label: 'Job & Bidding Pipeline', img: 'public/work_update_ic.svg' },
+    { id: 'pricing', label: 'Pricing Logic Management', img: 'public/rate_ic.svg' },
   ];
 
   return (
@@ -39,7 +39,7 @@ const AdminSidebar = ({ isOpen, activeTab, setActiveTab }) => {
             onClick={() => setActiveTab(item.id)} 
           >
             
-            <span className="adm-sb-icon-wrapper">{item.icon}</span>
+            <span className="adm-sb-icon-wrapper"><img src={item.img} alt='icon'></img></span>
             <span className="adm-sb-label-text">{item.label}</span>
           </div>
         ))}
