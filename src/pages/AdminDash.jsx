@@ -10,15 +10,21 @@ import JobBidding from '../components/JobBidding';
 import PLManagement from '../components/PLManagement';
 import Users from '../components/Users';
 import AdminHeader from '../components/AdminHeader';
+import AdminNotification from '../components/AdminNotification';
 
 const AdminDash = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [showNotifications, setShowNotifications] = useState(false);
   
   // New state to track which component is visible
   const [activeTab, setActiveTab] = useState('dashboard');
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const toggleNotifications = () => {
+    setShowNotifications(!showNotifications);
   };
 
   // Function to render the correct component
@@ -49,11 +55,21 @@ const AdminDash = () => {
       />
       
       <div className="dashboard-main-content">
-        <AdminHeader onToggleSidebar={toggleSidebar} />
+        <AdminHeader 
+          onToggleSidebar={toggleSidebar} 
+          onToggleNotifications={toggleNotifications} 
+          isNotificationActive={showNotifications}
+        />
         <main className="adm-body-content">
+          {showNotifications ? (
+            <div className="animate-fade">
+              <AdminNotification />
+            </div>
+          ) : (
           <div className="dashboard-body">
             {renderComponent()}
           </div>
+          )}
         </main>
       </div>
     </div>

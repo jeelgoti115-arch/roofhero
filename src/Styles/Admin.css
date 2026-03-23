@@ -1001,3 +1001,570 @@
   color: #ffffff !important;
   border-color: #ff5c28;
 }
+
+/* Profile Layout */
+.da-cm-profile-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.da-cm-back-btn {
+  background: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  cursor: pointer;
+}
+
+.da-cm-profile-card {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.da-cm-prof-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.da-cm-prof-identity {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.da-cm-prof-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.da-cm-prof-name {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: #122621;
+}
+
+.da-cm-prof-sub-info {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+  color: #676767;
+}
+
+.da-cm-verified {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.da-cm-verified img {
+  width: 20px;
+  height: 20px;
+}
+/* Tabs */
+.da-cm-tabs {
+  display: flex;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 25px;
+}
+
+.da-cm-tab-btn {
+  padding: 12px 25px;
+  border: none;
+  background: none;
+  font-size: 15px;
+  font-weight: 600;
+  color: #999;
+  cursor: pointer;
+  position: relative;
+}
+
+.da-cm-tab-btn.active {
+  color: #ff5c28;
+  background: linear-gradient(180deg, rgba(250, 90, 40, 0.2) 0%, rgba(250, 90, 40, 0.07) 100%);
+  border-radius: 16px 16px 0 0;
+}
+
+.da-cm-tab-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #ff5c28;
+}
+
+/* Tab Header Button Positioning */
+.da-cm-tab-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 25px;
+}
+
+.da-cm-btn-orange {
+  background: #ff5c28;
+  color: #fff;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 50px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+/* Reviews Grid */
+.da-cm-reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.da-cm-review-card {
+  background: #fff;
+  border: 1px solid #f0f0f0;
+  border-radius: 15px;
+  padding: 20px;
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+}
+
+.da-cm-rev-user {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.da-cm-rev-user img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.da-cm-stars {
+  font-size: 12px;
+  color: #ff5c28;
+}
+
+/* Documents List */
+.da-cm-docs-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.da-cm-doc-card {
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 15px;
+  position: relative;
+  background: #fff;
+}
+
+.da-cm-doc-info {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.da-cm-pdf-icon {
+  width: 35px;
+  height: 35px;
+  background: #fdf2f0;
+  color: #ff5c28;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+/* Card Delete Button (The Red X Circle) */
+.da-cm-card-del {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border: 1.5px solid #ff5c28;
+  color: #ff5c28;
+  background: transparent;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Section Title */
+.da-cm-section-subtitle {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 25px 0 15px 0;
+  color: #122621;
+}
+
+/* Licence Grid */
+.da-cm-licence-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: #fbfbfb;
+  padding: 20px;
+  border-radius: 12px;
+  margin: 25px 0;
+  gap: 20px;
+}
+
+.da-cm-licence-grid label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #122621;
+  margin-bottom: 5px;
+}
+
+.da-cm-licence-grid span {
+  font-size: 14px;
+  color: #676767;
+}
+
+/* Gallery */
+.da-cm-gallery-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.da-cm-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.da-cm-gallery-item {
+  position: relative;
+  aspect-ratio: 3/2;
+}
+
+.da-cm-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.da-cm-gallery-del {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #ff5c28;
+  color: white;
+  border: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Buttons */
+.da-cm-btn-edit, .da-cm-btn-upload {
+  background: #ff5c28;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 50px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+
+/* --- Modal Overlay --- */
+.da-cm-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+/* --- Modal Card --- */
+.da-cm-modal-card {
+  background: white;
+  width: 500px;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+}
+
+.da-cm-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.da-cm-modal-header h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #122621;
+}
+
+.da-cm-modal-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #999;
+}
+
+/* --- Photo Upload --- */
+.da-cm-modal-photo-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.da-cm-photo-preview {
+  position: relative;
+  width: 60px;
+  height: 60px;
+}
+
+.da-cm-photo-preview img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.da-cm-photo-badge {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: #ff5c28;
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+}
+
+.da-cm-modal-photo-upload p {
+  font-size: 12px;
+  font-weight: 700;
+  color: #122621;
+}
+
+/* --- Star Rating --- */
+.da-cm-star-rating {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 25px;
+}
+
+.da-cm-star-rating .star-inactive {
+  color: #e0e0e0;
+  cursor: pointer;
+}
+
+.da-cm-star-rating .star-active {
+  color: #ff5c28;
+  cursor: pointer;
+}
+
+/* --- Inputs --- */
+.da-cm-modal-input-group {
+  margin-bottom: 20px;
+}
+
+.da-cm-modal-input-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #122621;
+  margin-bottom: 8px;
+}
+
+.da-cm-modal-input-group input, 
+.da-cm-modal-input-group textarea {
+  width: 100%;
+  background: #f7f3f0;
+  border: 1px solid #efeae6;
+  border-radius: 10px;
+  padding: 12px 15px;
+  font-size: 14px;
+  outline: none;
+}
+
+/* --- Submit Button --- */
+.da-cm-btn-submit {
+  width: 100%;
+  background: #ff5c28;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 50px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* --- Animations --- */
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s ease-out;
+}
+
+
+
+/* ======================================================
+    Notification section 
+  ==================================================== */
+
+/* --- Admin Notification Section --- */
+.adm-noti-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 10px;
+}
+
+.adm-noti-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 15px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  border: 1px solid #f0f0f0;
+  transition: transform 0.2s ease;
+}
+
+.adm-noti-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.adm-noti-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+}
+
+/* Dark Green Icon Circle */
+.adm-noti-icon-circle {
+  width: 50px;
+  height: 50px;
+  background-color: #122621; /* Dark Green from image */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.adm-noti-logo-mark {
+  width: 24px;
+  height: auto;
+}
+
+/* Text Content */
+.adm-noti-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.adm-noti-text {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #444;
+  line-height: 1.4;
+}
+
+.adm-noti-date {
+  font-size: 13px;
+  color: #999;
+}
+
+/* Orange Action Button */
+.adm-noti-btn {
+  background-color: #ff5c28; /* RoofHero Orange */
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 50px; /* Pill shape */
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.adm-noti-btn:hover {
+  background-color: #e84d1b;
+}
+
+/* Responsive adjustment */
+@media (max-width: 768px) {
+  .adm-noti-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  .adm-noti-right {
+    width: 100%;
+  }
+  .adm-noti-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
