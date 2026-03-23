@@ -7,7 +7,6 @@ import {
   RiDownload2Line,
   RiArrowUpSLine,
   RiArrowDownSLine,
-  RiCheckboxCircleFill
 } from '@remixicon/react';
 import { 
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, 
@@ -61,47 +60,37 @@ const CustomBarTooltip = ({ active, payload, label }) => {
 };
 
 const DashAdmin = () => {
-  // --- PAGINATION STATE ---
+  // --- STATE ---
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6; // Data 1 to 6, 7 to 12, etc.
+  const itemsPerPage = 6;
   const [selectedContractor, setSelectedContractor] = useState(null);
   const [activeAccordion, setActiveAccordion] = useState('document');
 
   const tableData = [
-    { id: '#L1001', name: 'Michael Turner', mobile: '+61 400 123 456', suburbs: 'Parramatta, Blacktown', date: '20-04-2025', status: 'Pending', bio: 'John Smith is a certified roofing specialist operating across the Sydney metropolitan area, with a strong presence in areas like Parramatta, Blacktown, and Penrith...' },
-    { id: '#L1002', name: 'Sarah James', mobile: '+61 400 987 654', suburbs: 'Penrith, Castle Hill', date: '20-04-2025', status: 'Pending' },
+    { id: '#L1001', name: 'Michael Turner', mobile: '+61 400 123 456', email: 'michael.t@gmail.com', suburbs: 'Parramatta, Blacktown', date: '20-04-2025', status: 'Pending', bio: 'Michael Turner is a certified roofing specialist operating across the Sydney metropolitan area...' },
+    { id: '#L1002', name: 'Jon Snow', mobile: '+61 400 987 654', email: 'jonsnow@winterfell.com', suburbs: 'Winterfell, The North', date: '20-04-2025', status: 'Pending' },
     { id: '#L1003', name: 'Julie Martin', mobile: '+61 400 555 111', suburbs: 'Liverpool, Fairfield', date: '21-04-2025', status: 'Pending' },
     { id: '#L1004', name: 'Rahul Singh', mobile: '+61 400 222 333', suburbs: 'Bankstown, Strathfield', date: '21-04-2025', status: 'Pending' },
     { id: '#L1005', name: 'Sarah O’Connor', mobile: '+61 400 444 888', suburbs: 'Campbelltown, Camden', date: '21-04-2025', status: 'Pending' },
     { id: '#L1006', name: 'Mike Hollick', mobile: '+61 400 111 000', suburbs: 'Hurstville, Rockdale', date: '22-04-2025', status: 'Pending' },
     { id: '#L1007', name: 'Emma Watson', mobile: '+61 400 111 001', suburbs: 'Parramatta, Westmead', date: '22-04-2025', status: 'Pending' },
     { id: '#L1008', name: 'James Anderson', mobile: '+61 400 111 002', suburbs: 'Blacktown, Doonside', date: '22-04-2025', status: 'Active' },
-    { id: '#L1009', name: 'Olivia Brown', mobile: '+61 400 111 003', suburbs: 'Liverpool, Casula', date: '22-04-2025', status: 'Pending' },
-    { id: '#L1010', name: 'Liam Johnson', mobile: '+61 400 111 004', suburbs: 'Campbelltown, Ingleburn', date: '23-04-2025', status: 'Pending' },
   ];
 
-  // --- PAGINATION CALCULATIONS ---
+  // --- PAGINATION LOGIC ---
   const totalPages = Math.ceil(tableData.length / itemsPerPage);
-  // Get current slice of data
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentData = tableData.slice(indexOfFirstItem, indexOfLastItem);
 
-  // Logic to show only 3 buttons at a time (Sliding Window)
   let startPage = Math.max(1, currentPage - 1);
   let endPage = Math.min(totalPages, startPage + 2);
-
-  // Adjust if we are at the end of the list
-  if (endPage - startPage < 2) {
-    startPage = Math.max(1, endPage - 2);
-  }
+  if (endPage - startPage < 2) startPage = Math.max(1, endPage - 2);
 
   const pageNumbers = [];
-  for (let i = startPage; i <= endPage; i++) {
-    pageNumbers.push(i);
-  }
+  for (let i = startPage; i <= endPage; i++) { pageNumbers.push(i); }
 
-  // --- RENDER PROFILE VIEW ---
+  // --- PROFILE VIEW ---
   if (selectedContractor) {
     return (
       <div className="da-main-content animate-fade">
@@ -130,7 +119,7 @@ const DashAdmin = () => {
               </div>
               <div className="da-input-group">
                 <label>Email Address</label>
-                <input type="text" value={selectedContractor.email || "No email provided."} readOnly />
+                <input type="text" value={selectedContractor.email || "No Email Peovided"} readOnly />
               </div>
             </div>
           </div>
@@ -141,6 +130,7 @@ const DashAdmin = () => {
           </div>
 
           <div className="da-accordion">
+            {/* 1. DOCUMENT */}
             <div className={`da-accordion-item ${activeAccordion === 'document' ? 'open' : ''}`}>
               <div className="da-accordion-header" onClick={() => setActiveAccordion(activeAccordion === 'document' ? '' : 'document')}>
                 <span>Document</span>
@@ -160,32 +150,90 @@ const DashAdmin = () => {
                       <input type="text" value={selectedContractor.name} readOnly />
                     </div>
                   </div>
-                  <div className="da-upload-previews">
+                  <div className="da-upload-list">
                     <div className="da-file-preview">
                       <span>upload_licence_document_25042025.pdf</span>
-                      <RiDownload2Line size={18} className="da-download-icon" />
+                      <RiDownload2Line size={20} className="da-download-icon" />
                     </div>
                     <div className="da-file-preview">
                       <span>upload_insurance_certificate_25042025.pdf</span>
-                      <RiDownload2Line size={18} className="da-download-icon" />
+                      <RiDownload2Line size={20} className="da-download-icon" />
                     </div>
                   </div>
                 </div>
               )}
             </div>
 
-            <div className="da-accordion-item">
-              <div className="da-accordion-header">
+            {/* 2. WORK PREFERENCES */}
+            <div className={`da-accordion-item ${activeAccordion === 'work' ? 'open' : ''}`}>
+              <div className="da-accordion-header" onClick={() => setActiveAccordion(activeAccordion === 'work' ? '' : 'work')}>
                 <span>Work Preferences</span>
-                <div className="da-acc-icon-circle orange"><RiArrowDownSLine size={20}/></div>
+                <div className={`da-acc-icon-circle ${activeAccordion === 'work' ? 'active' : ''}`}>
+                    {activeAccordion === 'work' ? <RiArrowUpSLine size={20}/> : <RiArrowDownSLine size={20}/>}
+                </div>
               </div>
+              {activeAccordion === 'work' && (
+                <div className="da-accordion-body">
+                  <div className="da-doc-grid">
+                     <div className="da-input-group">
+                        <label>Suburbs or Regions You Serve</label>
+                        <input type="text" value="Bondi, Liverpool, Penrith" readOnly />
+                     </div>
+                     <div className="da-input-group">
+                        <label>Years of Roofing Experience</label>
+                        <input type="text" value="10" readOnly />
+                     </div>
+                  </div>
+                  <div className="da-services-offered">
+                     <label className="da-label-bold">Roofing Services You Offer<span className="da-required">*</span></label>
+                     <div className="da-checkbox-group">
+                        <label><input type="checkbox" checked readOnly /> Roof Replacements</label>
+                        <label><input type="checkbox" readOnly /> Roof Repairs</label>
+                        <label><input type="checkbox" readOnly /> Gutter Repairs</label>
+                        <label><input type="checkbox" readOnly /> Skylight Installation</label>
+                        <label><input type="checkbox" readOnly /> Roof Painting</label>
+                        <label><input type="checkbox" readOnly /> Leak Inspections</label>
+                     </div>
+                  </div>
+                </div>
+              )}
             </div>
 
-            <div className="da-accordion-item">
-              <div className="da-accordion-header">
+            {/* 3. PHOTOS */}
+            <div className={`da-accordion-item ${activeAccordion === 'photos' ? 'open' : ''}`}>
+              <div className="da-accordion-header" onClick={() => setActiveAccordion(activeAccordion === 'photos' ? '' : 'photos')}>
                 <span>Upload Past Work Photos</span>
-                <div className="da-acc-icon-circle orange"><RiArrowDownSLine size={20}/></div>
+                <div className={`da-acc-icon-circle ${activeAccordion === 'photos' ? 'active' : ''}`}>
+                    {activeAccordion === 'photos' ? <RiArrowUpSLine size={20}/> : <RiArrowDownSLine size={20}/>}
+                </div>
               </div>
+              {activeAccordion === 'photos' && (
+                <div className="da-accordion-body">
+                  <label className="da-label-small">Gallery Photos (Front, Back Areas)</label>
+                  <div className="da-custom-file-input">
+                     <button className="da-choose-file-btn">Choose File</button>
+                     <span className="da-file-name">No file chosen</span>
+                  </div>
+                  <div className="da-photo-gallery">
+                     <div className="da-photo-item">
+                        <img src="public/Rectangle-16-1.png" alt="1" />
+                        <div className="da-photo-delete">×</div>
+                     </div>
+                     <div className="da-photo-item">
+                        <img src="public/Rectangle-16-2.png" alt="2" />
+                        <div className="da-photo-delete">×</div>
+                     </div>
+                     <div className="da-photo-item">
+                        <img src="public/Rectangle-16-3.png" alt="3" />
+                        <div className="da-photo-delete">×</div>
+                     </div>
+                  </div>
+                  <div className="da-confirmation-check">
+                     <input type="checkbox" checked readOnly />
+                     <label>I confirm that all information provided is accurate and I agree to the platform's terms and conditions.</label>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
@@ -198,40 +246,23 @@ const DashAdmin = () => {
     );
   }
 
-  // --- RENDER MAIN DASHBOARD ---
+  // --- DASHBOARD VIEW ---
   return (
     <div className="da-main-content animate-fade">
       <h1 className="da-page-title">Admin Dashboard</h1>
 
       <div className="da-stats-grid">
         <div className="da-stat-card">
-          <div className="da-stat-icon-circle da-bg-orange">
-            <img src="/roofers.png" alt="icon" />
-          </div>
-          <div className="da-stat-info">
-            <label className="da-label-muted">Total Contractors</label>
-            <h2 className="da-stat-number">120</h2>
-          </div>
+          <div className="da-stat-icon-circle da-bg-orange"><img src="/roofers.png" alt="icon" /></div>
+          <div className="da-stat-info"><label className="da-label-muted">Total Contractors</label><h2 className="da-stat-number">120</h2></div>
         </div>
-
         <div className="da-stat-card">
-          <div className="da-stat-icon-circle da-bg-orange">
-            <img src="/homeowners.png" alt="icon" />
-          </div>
-          <div className="da-stat-info">
-            <label className="da-label-muted">Total Homeowners</label>
-            <h2 className="da-stat-number">240</h2>
-          </div>
+          <div className="da-stat-icon-circle da-bg-orange"><img src="/homeowners.png" alt="icon" /></div>
+          <div className="da-stat-info"><label className="da-label-muted">Total Homeowners</label><h2 className="da-stat-number">240</h2></div>
         </div>
-
         <div className="da-stat-card">
-          <div className="da-stat-icon-circle da-bg-orange">
-            <img src="/completeprojects.png" alt="icon" />
-          </div>
-          <div className="da-stat-info">
-            <label className="da-label-muted">Complete Projects</label>
-            <h2 className="da-stat-number">20</h2>
-          </div>
+          <div className="da-stat-icon-circle da-bg-orange"><img src="/completeprojects.png" alt="icon" /></div>
+          <div className="da-stat-info"><label className="da-label-muted">Complete Projects</label><h2 className="da-stat-number">20</h2></div>
         </div>
       </div>
 
@@ -241,22 +272,16 @@ const DashAdmin = () => {
           <div className="da-chart-visual">
             <ResponsiveContainer width="100%" height={250}>
               <AreaChart data={jobLeadsData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
-                <defs>
-                  <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#ff5c28" stopOpacity={0.3}/>
-                    <stop offset="95%" stopColor="#ff5c28" stopOpacity={0}/>
-                  </linearGradient>
-                </defs>
+                <defs><linearGradient id="colorVal" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#ff5c28" stopOpacity={0.3}/><stop offset="95%" stopColor="#ff5c28" stopOpacity={0}/></linearGradient></defs>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
                 <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fill: '#999', fontSize: 12}} dy={10} />
-                <YAxis axisLine={false} tickLine={false} tick={{fill: '#999', fontSize: 12}} tickFormatter={(val) => `$${val}k`} />
+                <YAxis axisLine={false} tickLine={false} tick={{fill: '#999', fontSize: 12}} tickFormatter={(v) => `$${v}k`} />
                 <Tooltip content={<CustomTooltip />} cursor={{ stroke: '#ff5c28', strokeWidth: 1 }} />
-                <Area type="monotone" dataKey="value" stroke="#ff5c28" strokeWidth={3} fillOpacity={1} fill="url(#colorValue)" activeDot={{ r: 6, stroke: '#fff', strokeWidth: 2, fill: '#ff5c28' }} />
+                <Area type="monotone" dataKey="value" stroke="#ff5c28" strokeWidth={3} fill="url(#colorVal)" activeDot={{ r: 6, stroke: '#fff', strokeWidth: 2, fill: '#ff5c28' }} />
               </AreaChart>
             </ResponsiveContainer>
           </div>
         </div>
-
         <div className="da-chart-box">
           <h3 className="da-section-subtitle">Contractors</h3>
           <div className="da-chart-visual">
@@ -264,7 +289,7 @@ const DashAdmin = () => {
               <BarChart data={contractorsData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
                 <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fill: '#999', fontSize: 12}} dy={10} />
-                <YAxis axisLine={false} tickLine={false} tick={{fill: '#999', fontSize: 12}} tickFormatter={(val) => `$${val}k`} />
+                <YAxis axisLine={false} tickLine={false} tick={{fill: '#999', fontSize: 12}} tickFormatter={(v) => `$${v}k`} />
                 <Tooltip content={<CustomBarTooltip />} cursor={{ fill: '#f9f9f9' }} />
                 <Bar dataKey="value" fill="#122621" barSize={8} radius={[10, 10, 0, 0]} />
               </BarChart>
@@ -274,72 +299,28 @@ const DashAdmin = () => {
       </div>
 
       <div className="da-table-section">
-      <h3 className="da-section-subtitle">Contractor Onboarding Request</h3>
-      <div className="da-table-card">
-        <table className="da-admin-table">
-          <thead>
-            <tr>
-              <th>Contractor ID</th>
-              <th>Contractor Name</th>
-              <th>Mobile Number</th>
-              <th>Suburbs Covered</th>
-              <th>Date Submitted</th>
-              <th>Status</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentData.map((row, index) => (
-              <tr key={index}>
-                <td className="da-text-dim">{row.id}</td>
-                <td className="da-font-bold">{row.name}</td>
-                <td>{row.mobile}</td>
-                <td>{row.suburbs}</td>
-                <td>{row.date}</td>
-                <td><span className="da-pill-pending">{row.status}</span></td>
-                <td>
-                  <button className="da-btn-view" onClick={() => setSelectedContractor(row)}>
-                    View Details <RiArrowRightUpLine size={16} />
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-
-        {/* --- DYNAMIC PAGINATION --- */}
-        <div className="da-pagination">
-          {/* Previous Arrow */}
-          <button 
-            className="da-pagi-nav" 
-            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-            disabled={currentPage === 1}
-          >
-            <RiArrowLeftSLine size={20}/>
-          </button>
-
-          {/* Numeric Page Buttons (Max 3 shown) */}
-          {pageNumbers.map(number => (
-            <button
-              key={number}
-              className={`da-pagi-nav ${currentPage === number ? 'da-pagi-active' : ''}`}
-              onClick={() => setCurrentPage(number)}
-            >
-              {number}
-            </button>
-          ))}
-
-          {/* Next Arrow */}
-          <button 
-            className="da-pagi-nav" 
-            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-            disabled={currentPage === totalPages}
-          >
-            <RiArrowRightSLine size={20}/>
-          </button>
+        <h3 className="da-section-subtitle">Contractor Onboarding Request</h3>
+        <div className="da-table-card">
+          <table className="da-admin-table">
+            <thead>
+              <tr><th>ID</th><th>Name</th><th>Mobile</th><th>Suburbs</th><th>Date</th><th>Status</th><th>Action</th></tr>
+            </thead>
+            <tbody>
+              {currentData.map((row, index) => (
+                <tr key={index}>
+                  <td className="da-text-dim">{row.id}</td><td className="da-font-bold">{row.name}</td><td>{row.mobile}</td><td>{row.suburbs}</td><td>{row.date}</td><td><span className="da-pill-pending">{row.status}</span></td>
+                  <td><button className="da-btn-view" onClick={() => setSelectedContractor(row)}>View Details <RiArrowRightUpLine size={16} /></button></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div className="da-pagination">
+            <button className="da-pagi-nav" onClick={() => setCurrentPage(p => Math.max(p - 1, 1))} disabled={currentPage === 1}><RiArrowLeftSLine/></button>
+            {pageNumbers.map(n => <button key={n} className={`da-pagi-nav ${currentPage === n ? 'da-pagi-active' : ''}`} onClick={() => setCurrentPage(n)}>{n}</button>)}
+            <button className="da-pagi-nav" onClick={() => setCurrentPage(p => Math.min(p + 1, totalPages))} disabled={currentPage === totalPages}><RiArrowRightSLine/></button>
+          </div>
         </div>
       </div>
-    </div>
     </div>
   );
 };
