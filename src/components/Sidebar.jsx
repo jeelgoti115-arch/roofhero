@@ -12,11 +12,11 @@ const Sidebar = ({ isOpen }) => {
 
     // 2. Clear the session
     localStorage.removeItem('isAuthenticated');
-
+    
     // 3. Brief delay so the toast is visible, then redirect
     setTimeout(() => {
-      setShowToast(false);
-      navigate('/'); 
+      setShowToast(false); 
+      navigate('/');
     }, 1500);
   };
 
@@ -30,7 +30,7 @@ const Sidebar = ({ isOpen }) => {
         </div>
       )}
 
-      <div className={`sidebar ${isOpen ? 'open' : 'closed'}`}>
+      <aside className={`sidebar-container ${isOpen ? 'open' : 'closed'}`}>
         <div className="sidebar-logo">
           <img src="/Frame 1000009354.png" alt="roofhero.au" />
         </div>
@@ -48,7 +48,7 @@ const Sidebar = ({ isOpen }) => {
             <span>Logout</span>
           </button>
         </div>
-      </div>
+      </aside>
     </>
   );
 };

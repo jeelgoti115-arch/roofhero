@@ -12,7 +12,7 @@ import Users from '../components/Users';
 import AdminHeader from '../components/AdminHeader';
 
 const AdminDash = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   
   // New state to track which component is visible
   const [activeTab, setActiveTab] = useState('dashboard');

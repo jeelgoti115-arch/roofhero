@@ -1,12 +1,127 @@
-import React from 'react'
+import React, { useState } from 'react'; // Added useState
+import { 
+  RiArrowRightUpLine, 
+  RiSearchLine, 
+  RiArrowLeftSLine, 
+  RiArrowRightSLine 
+} from '@remixicon/react';
 
 const CManagement = () => {
-  return (
-    <div>
-      CManagement
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt minima iusto nisi expedita, dolorem culpa ea dolorum molestiae illo delectus quam! Ullam temporibus eum perspiciatis porro deserunt exercitationem at modi est dolorem recusandae corporis dicta ad non nobis libero debitis, sunt facere maxime cupiditate? Deleniti quae ipsa cupiditate nostrum. Est corporis dolorum quis maiores quaerat dignissimos vitae. Nulla aut consequatur et ea accusantium neque sed iusto laudantium, est reiciendis doloribus, minus corporis quam dolor temporibus enim omnis amet perspiciatis, ut quo itaque fugiat tempore! Repellendus quaerat, odio enim iusto consectetur odit quam ipsum ea veniam doloribus tenetur, neque necessitatibus dignissimos dolores, doloremque debitis ducimus harum non tempora? Quod autem veritatis, alias repudiandae esse assumenda laudantium incidunt modi voluptatum deserunt, vel dignissimos ut odio veniam quo quam accusantium sed ad corporis tempora ex fuga quos! Voluptas esse accusantium fuga quo! Praesentium ex dolor, minima, saepe earum libero optio sint sit debitis suscipit exercitationem atque aliquam omnis ipsum sed, perspiciatis voluptatem? Totam tempora tenetur est, laboriosam id consequatur obcaecati sapiente officiis nisi amet dolorem nobis maxime asperiores eos aliquid fuga vel repellendus consectetur. Quis praesentium illum et, obcaecati delectus voluptatum provident soluta libero earum voluptatibus deleniti totam magnam doloremque, fugit architecto esse asperiores voluptas! Labore provident magnam eius reprehenderit. Dicta nihil voluptatum quibusdam recusandae veritatis magnam saepe earum doloribus magni provident? Dignissimos inventore hic at asperiores debitis suscipit eveniet molestiae, velit dolore doloribus cumque qui sint voluptate! Quod dolor dolorem ipsum nulla cupiditate eius veritatis perspiciatis in architecto cum! Nobis quae deserunt sunt quia animi provident eos quidem facere. Deserunt est sapiente voluptatem molestiae minima illum consequuntur qui, explicabo perferendis nam, hic quod id. Voluptatum magni error quis dolorem itaque commodi unde, accusantium, nam veniam at laboriosam. Ducimus corrupti officiis ex aliquid rerum eveniet facere tempora fugiat rem, numquam minima iure qui, porro accusantium omnis? Pariatur architecto blanditiis sint aperiam. Ea, molestias modi! Harum ullam vitae blanditiis consectetur, quidem facere ab aut a velit dolore? Sapiente et aperiam est nemo dolorum enim nostrum numquam aliquid harum quam? Voluptatem alias fugiat cumque, tempore quam culpa ab atque ipsam ratione accusamus. Iusto fugiat soluta iste minus repellendus qui repudiandae dolore explicabo omnis nisi, veritatis rerum? Distinctio laboriosam eveniet cumque ea. Unde totam harum neque velit, quasi fuga ipsam? Suscipit modi quam eius magnam non molestiae exercitationem corrupti culpa optio totam distinctio, aspernatur quidem quisquam enim qui facilis provident in porro fugiat consequuntur. Exercitationem vel tenetur quidem molestiae doloribus tempore at fuga error obcaecati, dignissimos distinctio mollitia alias harum saepe quas suscipit rem ipsum laudantium ducimus et sit dolorem. Necessitatibus aut earum laudantium, explicabo corporis praesentium perspiciatis nihil accusamus expedita, culpa a, optio assumenda eius reiciendis dolor. Illum rerum molestias suscipit inventore asperiores iusto quasi nostrum similique magnam officiis nulla facilis aliquid porro, ullam soluta repellat. Ratione assumenda sunt at porro natus alias, aspernatur inventore ut dignissimos iure, dicta excepturi quam quo rerum nostrum eos qui reiciendis! Inventore in culpa deserunt quisquam nobis. Eaque fugit distinctio laboriosam nemo, culpa consequuntur corrupti. Soluta, sit natus. Ipsum laborum ipsa vitae, eos vero recusandae voluptate consectetur dicta error reiciendis, incidunt distinctio adipisci saepe ullam iste, nihil debitis nesciunt nostrum eligendi quod. Magnam, laudantium? Quisquam omnis impedit explicabo consequatur ea eligendi tempore. Distinctio hic iure quaerat ullam. Obcaecati minima eos nisi dicta veritatis officia sequi, voluptate magni! Tempora voluptates autem, dicta suscipit aliquid ratione, consectetur expedita, sunt quam cum id deleniti perferendis quasi cupiditate nobis labore asperiores nam vero officiis aut rerum voluptas eos obcaecati! Soluta ex eveniet expedita voluptates tempora illum enim? Illo enim eum blanditiis ducimus sapiente maxime consectetur pariatur, suscipit dolore animi laudantium! Impedit, quaerat saepe ipsa porro tempora deleniti consectetur ea? Est corrupti aliquid obcaecati inventore? Dolore fugit iure et consequuntur quae sint quasi officia consequatur sunt nam enim, in illum natus repellat error ex omnis nesciunt. Soluta perspiciatis officiis aspernatur numquam nulla, tempora commodi quidem itaque ratione. Modi ut, ab enim asperiores sint fugit, reprehenderit vero soluta molestias vel quia. Neque cum necessitatibus est odit impedit ab eum non ipsam accusamus fuga delectus maxime eius esse dicta eligendi doloremque quisquam praesentium quia vel magnam voluptatum molestias, fugit accusantium? Nostrum, reprehenderit dolorem culpa dolor nam, obcaecati provident animi nemo, deleniti consequatur ducimus expedita quasi veritatis. Ipsa maiores dolorum quos quia ipsum odit fugit consequuntur ex. Dolorum veritatis molestias magnam, natus aliquid rerum ipsa incidunt! Fugit libero, obcaecati, quisquam excepturi beatae temporibus ratione perspiciatis doloribus tenetur ut eaque assumenda cum aliquam aspernatur placeat architecto reiciendis numquam voluptas corporis, illo similique maiores sed? Nemo odio dolorum atque illo veritatis consectetur labore eius. Reprehenderit voluptate laudantium voluptates beatae. Inventore facere, accusamus deleniti laboriosam consectetur fugit repudiandae vero nesciunt iure natus quidem neque praesentium veniam. Rem, itaque dolorem saepe dicta, odit maxime quasi quis omnis nulla officiis ad reprehenderit! Veniam doloribus id magnam repudiandae. Voluptate harum id adipisci ipsam autem facilis omnis mollitia rerum explicabo totam, repellat iusto porro iure consectetur animi iste illum aperiam voluptatum vero odio incidunt alias maxime quibusdam distinctio. Praesentium suscipit, doloribus et exercitationem quam omnis nemo voluptas est iure eveniet aspernatur vel sapiente! Dolore, ratione est suscipit, ut unde nesciunt aspernatur architecto maiores deserunt tenetur iure fugit? Dolorum soluta sit laudantium consectetur magnam, eaque deleniti officia a aliquam assumenda nesciunt quibusdam molestias veritatis, vero at fugit libero odit ipsum quas beatae voluptas. Amet voluptate voluptatem alias aliquam dignissimos modi commodi, ullam quae rem ipsa minima, dolorem excepturi. Minima, similique ipsum. Est facere ab labore temporibus quod laboriosam odio explicabo quidem consectetur nihil, recusandae quaerat, repellendus a officiis ex quas, debitis eveniet voluptatibus nemo. Veniam neque similique eaque incidunt eligendi. Deserunt voluptate aliquam alias ipsa, nesciunt, facere non vitae nisi deleniti earum autem rem delectus nobis dolores praesentium quam. Eius quaerat temporibus atque voluptas odit odio perferendis! Quis, sunt. Rerum omnis et, aperiam nobis exercitationem possimus quibusdam vel laborum? Eligendi dolorem saepe blanditiis natus. Iste voluptas voluptate dolorum neque dolore excepturi placeat, voluptates quod facere autem, inventore, aspernatur consequatur iure? Harum, dolores ex ullam esse libero asperiores dolorem facere possimus velit nihil, quasi reiciendis earum!
-    </div>
-  )
-}
+  // --- STATE ---
+  const [itemsPerPage, setItemsPerPage] = useState(10); // Default to 10
+  
+  const contractors = [
+    { id: '#L1001', name: 'Michael Turner', mobile: '0402 888 777', suburbs: 'Parramatta, Blacktown', date: '20-04-2025', status: 'Active' },
+{ id: '#L1002', name: 'Sarah James', mobile: '0456 789 321', suburbs: 'Liverpool, Campbelltown', date: '20-04-2025', status: 'Pending' },
+{ id: '#L1003', name: 'Julie Martin', mobile: '0433 222 111', suburbs: 'Ryde, Epping', date: '21-04-2025', status: 'Pending' },
+{ id: '#L1004', name: 'Rahul Singh', mobile: '0401 567 891', suburbs: 'Strathfield, Burwood', date: '21-04-2025', status: 'Pending' },
+{ id: '#L1005', name: 'Sarah O’Connor', mobile: '0411 333 222', suburbs: 'Penrith, Mt Druitt', date: '21-04-2025', status: 'Pending' },
+{ id: '#L1006', name: 'Michael Roberts', mobile: '0422 999 888', suburbs: 'Hurstville, Bankstown', date: '22-04-2025', status: 'Pending' },
+{ id: '#L1007', name: 'Aisha Khan', mobile: '0430 555 111', suburbs: 'Chatswood, Hornsby', date: '22-04-2025', status: 'Pending' },
+{ id: '#L1008', name: 'Benjamin Clark', mobile: '0430 555 112', suburbs: 'Bondi, Coogee', date: '22-04-2025', status: 'Active' },
+{ id: '#L1009', name: 'Sarah Morrison', mobile: '0430 555 113', suburbs: 'Manly, Dee Why', date: '22-04-2025', status: 'Pending' },
+{ id: '#L1010', name: 'Daniel Scott', mobile: '0430 555 114', suburbs: 'Ashfield, Marrickville', date: '23-04-2025', status: 'Pending' },
+{ id: '#L1011', name: 'Emma Watson', mobile: '0430 555 115', suburbs: 'Newtown, Glebe', date: '23-04-2025', status: 'Active' },
+{ id: '#L1012', name: 'James Anderson', mobile: '0430 555 116', suburbs: 'Randwick, Kensington', date: '23-04-2025', status: 'Pending' },
+{ id: '#L1013', name: 'Olivia Brown', mobile: '0430 555 117', suburbs: 'Paddington, Surry Hills', date: '23-04-2025', status: 'Pending' },
+{ id: '#L1014', name: 'Liam Johnson', mobile: '0430 555 118', suburbs: 'Balmain, Rozelle', date: '24-04-2025', status: 'Active' },
+{ id: '#L1015', name: 'Sophia Wilson', mobile: '0430 555 119', suburbs: 'Leichhardt, Haberfield', date: '24-04-2025', status: 'Pending' },
+{ id: '#L1016', name: 'Noah Taylor', mobile: '0430 555 120', suburbs: 'Drummoyne, Five Dock', date: '24-04-2025', status: 'Pending' },
+{ id: '#L1017', name: 'Isabella Thomas', mobile: '0430 555 121', suburbs: 'Lane Cove, Artarmon', date: '24-04-2025', status: 'Pending' },
+{ id: '#L1018', name: 'William White', mobile: '0430 555 122', suburbs: 'Mosman, Neutral Bay', date: '25-04-2025', status: 'Active' },
+{ id: '#L1019', name: 'Mia Harris', mobile: '0430 555 123', suburbs: 'Woollahra, Double Bay', date: '25-04-2025', status: 'Pending' },
+{ id: '#L1020', name: 'Ethan Martin', mobile: '0430 555 124', suburbs: 'Cronulla, Miranda', date: '25-04-2025', status: 'Pending' },
+{ id: '#L1021', name: 'Charlotte Lee', mobile: '0430 555 125', suburbs: 'Kogarah, Rockdale', date: '25-04-2025', status: 'Pending' },
+{ id: '#L1022', name: 'Lucas Walker', mobile: '0430 555 126', suburbs: 'Bexley, Arncliffe', date: '26-04-2025', status: 'Active' },
+{ id: '#L1023', name: 'Amelia Hall', mobile: '0430 555 127', suburbs: 'Greenacre, Punchbowl', date: '26-04-2025', status: 'Pending' },
+{ id: '#L1024', name: 'Henry Allen', mobile: '0430 555 128', suburbs: 'Lakemba, Wiley Park', date: '26-04-2025', status: 'Pending' },
+{ id: '#L1025', name: 'Evelyn Young', mobile: '0430 555 129', suburbs: 'Campsie, Belfield', date: '26-04-2025', status: 'Pending' },
+  ];
 
-export default CManagement
+  // --- LOGIC ---
+  // Slice the array to only show the amount selected in the dropdown
+  const visibleContractors = contractors.slice(0, itemsPerPage);
+
+  const handleEntriesChange = (e) => {
+    setItemsPerPage(Number(e.target.value));
+  };
+
+  return (
+    <div className="da-cm-main-container animate-fade">
+      <h1 className="da-cm-page-title">Contractor Management</h1>
+
+      <div className="da-cm-content-card">
+        {/* --- Top Controls --- */}
+        <div className="da-cm-controls-row">
+          <div className="da-cm-entries-select">
+            <span>Show</span>
+            <select 
+              className="da-cm-dropdown" 
+              value={itemsPerPage} 
+              onChange={handleEntriesChange}
+            >
+              <option value={5}>5</option>
+              <option value={10}>10</option>
+              <option value={25}>25</option>
+            </select>
+          </div>
+
+          <div className="da-cm-search-box">
+            <RiSearchLine size={18} className="da-cm-search-icon" />
+            <input type="text" placeholder="Search" className="da-cm-input" />
+          </div>
+        </div>
+
+        {/* --- Contractor Table --- */}
+        <div className="da-cm-table-wrapper">
+          <table className="da-cm-table">
+            <thead>
+              <tr>
+                <th>Contractor ID</th>
+                <th>Contractor Name</th>
+                <th>Mobile Number</th>
+                <th>Suburbs Covered</th>
+                <th>Date Approved</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {/* Use visibleContractors instead of contractors */}
+              {visibleContractors.map((item, index) => (
+                <tr key={index}>
+                  <td className="da-cm-id-text">{item.id}</td>
+                  <td className="da-cm-name-text">{item.name}</td>
+                  <td>{item.mobile}</td>
+                  <td>{item.suburbs}</td>
+                  <td>{item.date}</td>
+                  <td>
+                    <span className={item.status === 'Active' ? 'da-cm-pill-active' : 'da-cm-pill-pending'}>
+                      {item.status}
+                    </span>
+                  </td>
+                  <td>
+                    <button className="da-cm-btn-action">
+                      View Details <RiArrowRightUpLine size={16} />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          {/* --- Pagination --- */}
+          <div className="da-cm-pagination-footer">
+            <button className="da-cm-pagi-btn"><RiArrowLeftSLine size={20}/></button>
+            <button className="da-cm-pagi-btn">1</button>
+            <button className="da-cm-pagi-btn da-cm-pagi-active">2</button>
+            <button className="da-cm-pagi-btn">3</button>
+            <button className="da-cm-pagi-btn"><RiArrowRightSLine size={20}/></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default CManagement;

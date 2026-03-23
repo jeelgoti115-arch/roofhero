@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   RiLayoutGridFill, 
   RiUserSettingsLine, 
@@ -11,10 +11,16 @@ import { useNavigate } from 'react-router-dom';
 
 const AdminSidebar = ({ isOpen, activeTab, setActiveTab }) => {
   const navigate = useNavigate();
+  const [showToast, setShowToast] = useState(false); // State for Logout Popup
+  
 
   const handleLogout = () => {
+    setShowToast(true);
     localStorage.removeItem('isAuthenticated');
     navigate('/', { state: { logoutSuccess: true } });
+    setTimeout(() => {
+      setShowToast(false);
+    }, 1500);
   };
 
   const menuItems = [
@@ -26,7 +32,15 @@ const AdminSidebar = ({ isOpen, activeTab, setActiveTab }) => {
   ];
 
   return (
-    <aside className={`adm-sb-container ${isOpen ? 'adm-sb-open' : 'adm-sb-closed'}`}>
+    <>
+    {/* --- LOGOUT TOAST POPUP --- */}
+      {showToast && (
+        <div className="login-toast-popup animate-slide-in">
+          <RiCheckboxCircleFill size={20} color="#2ecc71" />
+          <span>Log out successfull!</span>
+        </div>
+      )}
+    <aside className={`adm-sb-container ${isOpen ? 'closed' : 'open'}`}>
       <div className="adm-sb-logo-section">
         <img src="/Frame 1000009354.png" alt="roofhero.au" />
       </div>
@@ -52,6 +66,7 @@ const AdminSidebar = ({ isOpen, activeTab, setActiveTab }) => {
         </button>
       </div>
     </aside>
+    </>
   );
 };
 
