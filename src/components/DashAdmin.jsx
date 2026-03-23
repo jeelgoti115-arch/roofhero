@@ -61,6 +61,9 @@ const CustomBarTooltip = ({ active, payload, label }) => {
 };
 
 const DashAdmin = () => {
+  // --- PAGINATION STATE ---
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6; // Data 1 to 6, 7 to 12, etc.
   const [selectedContractor, setSelectedContractor] = useState(null);
   const [activeAccordion, setActiveAccordion] = useState('document');
 
@@ -71,7 +74,32 @@ const DashAdmin = () => {
     { id: '#L1004', name: 'Rahul Singh', mobile: '+61 400 222 333', suburbs: 'Bankstown, Strathfield', date: '21-04-2025', status: 'Pending' },
     { id: '#L1005', name: 'Sarah O’Connor', mobile: '+61 400 444 888', suburbs: 'Campbelltown, Camden', date: '21-04-2025', status: 'Pending' },
     { id: '#L1006', name: 'Mike Hollick', mobile: '+61 400 111 000', suburbs: 'Hurstville, Rockdale', date: '22-04-2025', status: 'Pending' },
+    { id: '#L1007', name: 'Emma Watson', mobile: '+61 400 111 001', suburbs: 'Parramatta, Westmead', date: '22-04-2025', status: 'Pending' },
+    { id: '#L1008', name: 'James Anderson', mobile: '+61 400 111 002', suburbs: 'Blacktown, Doonside', date: '22-04-2025', status: 'Active' },
+    { id: '#L1009', name: 'Olivia Brown', mobile: '+61 400 111 003', suburbs: 'Liverpool, Casula', date: '22-04-2025', status: 'Pending' },
+    { id: '#L1010', name: 'Liam Johnson', mobile: '+61 400 111 004', suburbs: 'Campbelltown, Ingleburn', date: '23-04-2025', status: 'Pending' },
   ];
+
+  // --- PAGINATION CALCULATIONS ---
+  const totalPages = Math.ceil(tableData.length / itemsPerPage);
+  // Get current slice of data
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentData = tableData.slice(indexOfFirstItem, indexOfLastItem);
+
+  // Logic to show only 3 buttons at a time (Sliding Window)
+  let startPage = Math.max(1, currentPage - 1);
+  let endPage = Math.min(totalPages, startPage + 2);
+
+  // Adjust if we are at the end of the list
+  if (endPage - startPage < 2) {
+    startPage = Math.max(1, endPage - 2);
+  }
+
+  const pageNumbers = [];
+  for (let i = startPage; i <= endPage; i++) {
+    pageNumbers.push(i);
+  }
 
   // --- RENDER PROFILE VIEW ---
   if (selectedContractor) {
@@ -246,47 +274,72 @@ const DashAdmin = () => {
       </div>
 
       <div className="da-table-section">
-        <h3 className="da-section-subtitle">Contractor Onboarding Request</h3>
-        <div className="da-table-card">
-          <table className="da-admin-table">
-            <thead>
-              <tr>
-                <th>Contractor ID</th>
-                <th>Contractor Name</th>
-                <th>Mobile Number</th>
-                <th>Suburbs Covered</th>
-                <th>Date Submitted</th>
-                <th>Status</th>
-                <th>Action</th>
+      <h3 className="da-section-subtitle">Contractor Onboarding Request</h3>
+      <div className="da-table-card">
+        <table className="da-admin-table">
+          <thead>
+            <tr>
+              <th>Contractor ID</th>
+              <th>Contractor Name</th>
+              <th>Mobile Number</th>
+              <th>Suburbs Covered</th>
+              <th>Date Submitted</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {currentData.map((row, index) => (
+              <tr key={index}>
+                <td className="da-text-dim">{row.id}</td>
+                <td className="da-font-bold">{row.name}</td>
+                <td>{row.mobile}</td>
+                <td>{row.suburbs}</td>
+                <td>{row.date}</td>
+                <td><span className="da-pill-pending">{row.status}</span></td>
+                <td>
+                  <button className="da-btn-view" onClick={() => setSelectedContractor(row)}>
+                    View Details <RiArrowRightUpLine size={16} />
+                  </button>
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {tableData.map((row, index) => (
-                <tr key={index}>
-                  <td className="da-text-dim">{row.id}</td>
-                  <td className="da-font-bold">{row.name}</td>
-                  <td>{row.mobile}</td>
-                  <td>{row.suburbs}</td>
-                  <td>{row.date}</td>
-                  <td><span className="da-pill-pending">{row.status}</span></td>
-                  <td>
-                    <button className="da-btn-view" onClick={() => setSelectedContractor(row)}>
-                      View Details <RiArrowRightUpLine size={16} />
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <div className="da-pagination">
-            <button className="da-pagi-nav"><RiArrowLeftSLine size={20}/></button>
-            <button className="da-pagi-nav">1</button>
-            <button className="da-pagi-nav da-pagi-active">2</button>
-            <button className="da-pagi-nav">3</button>
-            <button className="da-pagi-nav"><RiArrowRightSLine size={20}/></button>
-          </div>
+            ))}
+          </tbody>
+        </table>
+
+        {/* --- DYNAMIC PAGINATION --- */}
+        <div className="da-pagination">
+          {/* Previous Arrow */}
+          <button 
+            className="da-pagi-nav" 
+            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+          >
+            <RiArrowLeftSLine size={20}/>
+          </button>
+
+          {/* Numeric Page Buttons (Max 3 shown) */}
+          {pageNumbers.map(number => (
+            <button
+              key={number}
+              className={`da-pagi-nav ${currentPage === number ? 'da-pagi-active' : ''}`}
+              onClick={() => setCurrentPage(number)}
+            >
+              {number}
+            </button>
+          ))}
+
+          {/* Next Arrow */}
+          <button 
+            className="da-pagi-nav" 
+            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+            disabled={currentPage === totalPages}
+          >
+            <RiArrowRightSLine size={20}/>
+          </button>
         </div>
       </div>
+    </div>
     </div>
   );
 };
