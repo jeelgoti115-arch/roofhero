@@ -1457,6 +1457,308 @@
   animation: slideUp 0.3s ease-out;
 }
 
+/* --- Contractor Edit Profile Styles --- */
+.da-cm-edit-card {
+  background: white;
+  padding: 35px;
+  border-radius: 15px;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.03);
+  width: 100%; /* Ensure it fills the container */
+}
+
+.da-cm-edit-card, 
+.da-cm-edit-card *, 
+.da-cm-edit-card *::before, 
+.da-cm-edit-card *::after {
+  box-sizing: border-box;
+}
+
+.da-cm-section-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #122621;
+  margin: 30px 0 20px 0;
+}
+
+.da-cm-section-title:first-child {
+  margin-top: 0;
+}
+
+.da-cm-edit-personal-grid {
+  display: flex;
+  gap: 40px; /* Increased gap */
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.da-cm-edit-avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0; /* Prevents avatar from squishing */
+}
+
+.da-cm-edit-inputs-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.da-cm-work-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr; /* Image shows the suburb box is wider than the years box */
+  gap: 20px;
+}
+
+.da-cm-edit-group {
+  width: 100%;
+}
+
+.da-cm-edit-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: #122621;
+  margin-bottom: 8px;
+}
+
+.da-cm-edit-group input, 
+.da-cm-edit-group textarea {
+  width: 100%;
+  padding: 14px 18px;
+  background-color: #f7f3f0;
+  border: 1px solid #efeae6;
+  border-radius: 12px;
+  color: #444;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.da-cm-edit-group input:focus, 
+.da-cm-edit-group textarea:focus {
+  border-color: #ff5c28;
+}
+
+.da-cm-bio-container {
+  width: 100%;
+  margin-top: 25px;
+}
+
+.da-cm-bio-container textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.da-cm-edit-checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-top: 15px;
+}
+
+.da-cm-checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #676767;
+}
+
+.da-cm-checkbox-item input[type="checkbox"] {
+  accent-color: #ff5c28;
+  width: 18px;
+  height: 18px;
+}
+
+.da-cm-edit-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 40px;
+}
+
+.da-cm-btn-cancel {
+  background: white;
+  color: #ff5c28;
+  border: 1px solid #ff5c28;
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.da-cm-btn-revoke {
+  margin-top: 25px;
+  background: #122621; /* Dark green button */
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 50px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.da-red { color: #ff5c28; margin-left: 2px; }
+
+/* ======================================================
+    Pricing and logic management  
+  ==================================================== */
+
+/* --- Pricing Logic Management (PLM) Optimized --- */
+
+/* 1. Global fix for this specific card to prevent layout breakage */
+.da-plm-content-card, 
+.da-plm-content-card * {
+  box-sizing: border-box; /* Crucial: padding won't expand width */
+}
+
+.da-plm-content-card {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+  width: 100%;
+}
+
+.da-plm-page-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #122621;
+  margin-bottom: 30px;
+}
+
+.da-plm-section {
+  margin-bottom: 40px;
+  width: 100%;
+}
+
+.da-plm-section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #122621;
+  margin-bottom: 5px;
+}
+
+.da-plm-section-desc {
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+/* 2. Grid System - Added min-width: 0 to prevent content overflow */
+.da-plm-grid-4, .da-plm-grid-3, .da-plm-grid-2 {
+  display: grid;
+  gap: 20px;
+  width: 100%;
+}
+
+.da-plm-grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.da-plm-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.da-plm-grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+/* 3. Input Groups - Ensure they fill the cell but don't exceed it */
+.da-plm-input-group, 
+.da-cm-edit-group {
+  width: 100%; 
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* Allows the group to shrink if needed */
+}
+
+.da-plm-input-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #122621;
+  margin-bottom: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.da-plm-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+/* 4. Inputs - Removed any fixed widths to avoid conflicts */
+.da-plm-input-wrapper input, 
+.da-plm-basic-input {
+  width: 100%; /* Fills the container exactly */
+  padding: 14px 18px;
+  background-color: #f7f3f0;
+  border: 1px solid #efeae6;
+  border-radius: 12px;
+  font-size: 14px;
+  color: #676767;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.da-plm-input-wrapper input:focus, 
+.da-plm-basic-input:focus {
+  border-color: #ff5c28;
+}
+
+/* 5. Unit Badge Adjustment */
+.da-plm-unit-badge {
+  position: absolute;
+  right: 8px;
+  background-color: #555;
+  color: white;
+  font-size: 10px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-weight: 600;
+  pointer-events: none; /* Allows clicking "through" the badge to focus input */
+}
+
+/* 6. Actions Footer */
+.da-plm-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 20px;
+  border-top: 1px solid #f0f0f0;
+  padding-top: 30px;
+}
+
+.da-plm-btn-save {
+  background-color: #ff5c28;
+  color: white;
+  border: none;
+  padding: 14px 30px;
+  border-radius: 50px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.da-plm-btn-cancel {
+  background-color: white;
+  color: #ff5c28;
+  border: 1px solid #ff5c28;
+  padding: 14px 30px;
+  border-radius: 50px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
 
 
 /* ======================================================
