@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useRef, useState, useMemo, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   RiSearchLine,
   RiArrowLeftSLine,
@@ -8,12 +9,12 @@ import {
   RiArrowLeftLine,
   RiArrowDownSLine,
   RiArrowUpSLine,
-  RiMailLine,
-  RiPhoneLine,
-  RiCheckboxCircleFill,
+  RiCloseCircleLine,
+  RiAddCircleFill,
   RiMailFill,
   RiPhoneFill,
-  RiCloseCircleLine
+  RiStarFill,
+  RiInformationFill
 } from '@remixicon/react';
 
 const AwaitingAssignmentView = ({ job, onBack }) => {
@@ -52,9 +53,9 @@ const AwaitingAssignmentView = ({ job, onBack }) => {
               </div>
               <div className="jb-status-container">
                 <div className="jb-status-tag jb-tag-open">
-                   <span className="jb-dot"></span> Open For Bids
+                   <span className="jb-dot"></span> No Bids
                 </div>
-                <p className="jb-bids-count">12 Contractor Bids Received</p>
+                <p className="jb-bids-count">Waiting for Assignment</p>
               </div>
             </div>
 
@@ -67,7 +68,7 @@ const AwaitingAssignmentView = ({ job, onBack }) => {
                 <img src="public/r4.jpg" alt="Job" />
                 <div className="jb-image-overlay">
                   <span>View More</span>
-                  <RiArrowRightUpLine size={16} />
+                  <RiAddCircleFill size={16} />
                 </div>
               </div>
             </div>
@@ -241,48 +242,282 @@ const AwaitingAssignmentView = ({ job, onBack }) => {
   );
 };
 
-// --- SUB-COMPONENT: BIDDING IN PROGRESS VIEW (IMAGE 2) ---
-const BiddingInProgressView = ({ job, onBack }) => {
+const BiddingInProgressView = ({ onBack }) => {
+  const [expandedSection, setExpandedSection] = useState('basic');
+  const navigate = useNavigate(); // Initialize navigation
+  const scrollRef = useRef(null);
+  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal
+
+  const toggleSection = (section) => {
+    setExpandedSection(expandedSection === section ? null : section);
+  };
+
+  const handleButtonClick = () => {
+    setIsModalOpen(false); // Close the modal first
+    navigate('/project-details'); // Navigate to the route path
+  };
+
+  const contractors = [
+    { id: 1, name: "Matthew Plunkett", image: "public/contractor1.jpg", price: "9,200", rating: "4.7", contractorId: "#RPH-2025-00123", pricePerSq: "143", isRejected: false },
+    { id: 2, name: "Madeline Joyner", image: "public/contractor2.jpg", price: "9,200", rating: "4.7", contractorId: "#RPH-2025-00123", pricePerSq: "143", isRejected: true },
+    { id: 3, name: "Matthew Plunkett", image: "public/contractor1.jpg", price: "9,200", rating: "4.7", contractorId: "#RPH-2025-00123", pricePerSq: "143", isRejected: false },
+  ];
+
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+      const cardWidth = scrollRef.current.querySelector('.bid-card-item').offsetWidth + 20;
+      const scrollAmount = direction === 'left' ? -cardWidth : cardWidth;
+      scrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="jb-details-container animate-fade">
+      {/* Header */}
       <div className="jb-details-header">
-        <button onClick={onBack} className="jb-back-btn"><RiArrowLeftLine size={20} /> <span>Homeowner Project Details</span></button>
+        <button onClick={onBack} className="jb-back-btn">
+          <RiArrowLeftLine size={20} />
+        </button>
+        <h1>Homeowner Project Details</h1>
       </div>
+
       <div className="jb-details-layout">
+        {/* LEFT MAIN CONTENT */}
         <div className="jb-details-main">
-          {/* Main Info Card (Same as above) */}
           <div className="jb-card jb-p-24">
-             <div className="jb-profile-row">
-                <img src="https://i.pravatar.cc/150?u=1" alt="Profile" className="jb-avatar" />
-                <h3>{job.name}</h3>
-                <div className="jb-status-tag jb-tag-open">Open For Bids</div>
-             </div>
-             {/* ... Accordion sections ... */}
-          </div>
-          
-          <div className="jb-quote-placeholder mt-24">
-             <div className="jb-quote-box">
-                <h3>Waiting for Contractor Quotes</h3>
-                <p>We're currently collecting quotes from trusted contractors.</p>
-             </div>
+            <h2 className="jb-section-title">Project Details</h2>
+            <div className="jb-profile-row">
+              <img src="public/contractor2.jpg" alt="Profile" className="jb-avatar" />
+              <div className="jb-profile-info">
+                <h3>Samantha Hollick</h3>
+                <div className="jb-contact-row">
+                  <span><RiMailFill size={14} className="jb-icon-orange" /> JasperCanning@dayrep.com</span>
+                  <span className="jb-divider">|</span>
+                  <span><RiPhoneFill size={14} className="jb-icon-orange" /> 937-304-8161</span>
+                </div>
+              </div>
+              <div className="jb-status-container">
+                <div className="jb-status-tag jb-tag-open">
+                  <span className="jb-dot"></span> Open For Bids
+                </div>
+                <p className="jb-bids-count">12 Contractor Bids Received</p>
+              </div>
+            </div>
+
+            <h2 className="jb-section-title mt-24">Project Images</h2>
+            <div className="jb-image-grid-4">
+              <img src="public/r1.jpg" alt="Job" />
+              <img src="public/r2.jpg" alt="Job" />
+              <img src="public/r3.jpg" alt="Job" />
+              <div className="jb-image-card-more">
+                <img src="public/r4.jpg" alt="Job" />
+                <div className="jb-image-overlay">
+                  <span>View More</span>
+                  <RiArrowRightUpLine size={16} />
+                </div>
+              </div>
+            </div>
+
+            {/* Accordion Sections */}
+            <div className="jb-accordion mt-24">
+              
+              {/* Basic Information Section */}
+              <div className={`jb-accordion-item ${expandedSection === 'basic' ? 'jb-item-active' : ''}`}>
+                <div 
+                  className={`jb-accordion-header ${expandedSection === 'basic' ? 'jb-bg-active' : ''}`}
+                  onClick={() => toggleSection('basic')}
+                >
+                  <span>Basic Information</span>
+                  <div className={`jb-circle-icon ${expandedSection === 'basic' ? 'jb-bg-dark' : 'jb-bg-orange'}`}>
+                    {expandedSection === 'basic' ? <RiArrowUpSLine size={20} /> : <RiArrowDownSLine size={20} />}
+                  </div>
+                </div>
+                {expandedSection === 'basic' && (
+                  <div className="jb-accordion-content jb-grid-2 animate-fade">
+                    <div><label>Project ID:</label><p>RH-JOB-2025-0148</p></div>
+                    <div><label>Property Address:</label><p>27 Rosebay Street, Bondi, NSW 2026</p></div>
+                    <div><label>Roof Type:</label><p>Tile Roof</p></div>
+                    <div><label>Approx. Roof Area:</label><p>180 m²</p></div>
+                    <div><label>Pitch Type:</label><p>Medium Pitch (25-35°)</p></div>
+                    <div><label>Stories:</label><p>2</p></div>
+                    <div><label>Access Difficulty:</label><p>Moderate</p></div>
+                    <div><label>Material Requested:</label><p>Colorbond Metal</p></div>
+                    <div className="jb-col-span-2"><label>Urgency Level:</label><p>Flexible (within 30 days)</p></div>
+                  </div>
+                )}
+              </div>
+
+              {/* Automated Quoting Section */}
+              <div className={`jb-accordion-item mt-12 ${expandedSection === 'quoting' ? 'jb-item-active' : ''}`}>
+                <div 
+                  className={`jb-accordion-header ${expandedSection === 'quoting' ? 'jb-bg-active' : ''}`}
+                  onClick={() => toggleSection('quoting')}
+                >
+                  <span>Automated Quoting</span>
+                  <div className={`jb-circle-icon ${expandedSection === 'quoting' ? 'jb-bg-dark' : 'jb-bg-orange'}`}>
+                    {expandedSection === 'quoting' ? <RiArrowUpSLine size={20} /> : <RiArrowDownSLine size={20} />}
+                  </div>
+                </div>
+                {expandedSection === 'quoting' && (
+                  <div className="jb-accordion-content jb-grid-2 animate-fade">
+                    <div><label>Automated Quoting:</label><p>$8,000 — $9,500 AUD</p></div>
+                    <div><label>Provide by:</label><p>roofhero</p></div>
+                  </div>
+                )}
+              </div>
+
+              {/* Documents Section */}
+              <div className={`jb-accordion-item mt-12 ${expandedSection === 'docs' ? 'jb-item-active' : ''}`}>
+                <div 
+                  className={`jb-accordion-header ${expandedSection === 'docs' ? 'jb-bg-active' : ''}`}
+                  onClick={() => toggleSection('docs')}
+                >
+                  <span>Documents</span>
+                  <div className={`jb-circle-icon ${expandedSection === 'docs' ? 'jb-bg-dark' : 'jb-bg-orange'}`}>
+                    {expandedSection === 'docs' ? <RiArrowUpSLine size={20} /> : <RiArrowDownSLine size={20} />}
+                  </div>
+                </div>
+                {expandedSection === 'docs' && (
+                  <div className="jb-accordion-content jb-doc-flex animate-fade">
+                    {[1, 2, 3].map((_, i) => (
+                      <div key={i} className="jb-doc-pill-card">
+                        <div className="jb-doc-icon-box">
+                          <img src="public/pdf_ic.png" alt="pdf" width="20" />
+                        </div>
+                        <div className="jb-doc-text">
+                          <span className="jb-doc-name">RooferCoinsurance.pdf</span>
+                          <span className="jb-doc-sub">Public Liability Insurance</span>
+                        </div>
+                        <RiCloseCircleLine size={18} className="jb-doc-close" />
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         </div>
-        
+
+        {/* RIGHT SIDEBAR */}
         <div className="jb-details-side">
           <div className="jb-card jb-p-24">
             <h2 className="jb-section-title">Contractor Assignment</h2>
+            <div className="jb-search-box-side">
+              <input type="text" placeholder="Search Contractor" />
+            </div>
             <div className="jb-contractor-list">
-              {['Toby Adamson', 'Angus Klein'].map((name, i) => (
-                <div key={i} className="jb-contractor-item assigned">
-                   <p className="jb-c-name">{name}</p>
-                   <span className="jb-assigned-status">Assigned</span>
+              {[
+                { name: 'Toby Adamson', status: 'Assigned', img: 'public/toby.jpg' },
+                { name: 'Angus Klein', status: 'Assigned', img: 'public/angus.jpg' },
+                { name: 'Beau Gledson', status: 'Assigned', img: 'public/beau.jpg' },
+                { name: 'Riley Blanc', status: 'check', img: 'public/riley.jpg' },
+                { name: 'Zane Vlamingh', status: 'check', img: 'public/zane.jpg' },
+                { name: 'Aidan Heymann', status: 'check', img: 'public/aidan.jpg' },
+                { name: 'Archer McCorkindale', status: 'check', img: 'public/archer.jpg' }
+              ].map((c, i) => (
+                <div key={i} className="jb-contractor-item">
+                  <div className="jb-flex-row">
+                    <img src={c.img} className="jb-avatar-sm" alt="C" />
+                    <div className="jb-c-info">
+                      <p className="jb-c-name">{c.name}</p>
+                      <p className="jb-c-loc">Parramatta, Blacktown</p>
+                    </div>
+                    {c.status === 'Assigned' ? (
+                      <span className="jb-assigned-text">Assigned</span>
+                    ) : (
+                      <input type="checkbox" className="jb-checkbox" />
+                    )}
+                  </div>
                 </div>
               ))}
             </div>
-            <button className="jb-btn-disabled mt-24">Assign Selected Contractor <RiArrowRightUpLine size={16} /></button>
+            <button className="jb-btn-assign-ghost mt-24">
+              Assign Selected Contractor <RiArrowRightUpLine size={18} />
+            </button>
           </div>
         </div>
       </div>
+
+      {/* BOTTOM SECTION: CONTRACTOR BIDS */}
+      <section className="contractor-bids-section">
+            <div className="bids-header">
+              <h2 className="section-title">Contractor Bids</h2>
+              <div className="carousel-nav">
+                <button className="nav-arrow" onClick={() => scroll('left')}><RiArrowLeftSLine size={20} /></button>
+                <button className="nav-arrow" onClick={() => scroll('right')}><RiArrowRightSLine size={20} /></button>
+              </div>
+            </div>
+      
+            <div className="bids-slider-track" ref={scrollRef}>
+              {contractors.map((item) => (
+                <div key={item.id} className={`bid-card-item ${item.isRejected ? 'rejected' : ''}`}>
+                  <div className="card-top-row">
+                    <div className="user-profile">
+                      <img src={item.image} alt="avatar" />
+                      <div className="user-text">
+                        <h4>{item.name}</h4>
+                        <div className="rating-row">
+                          <img src="public/star-ic-rating.png" alt="star" className='star'/>
+                          <span className="rating-label">{item.rating} (128 reviews)</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="card-price">${item.price}</div>
+                  </div>
+      
+                  <div className="service-tag">Roof Replacement</div>
+                  <hr className="divider" />
+      
+                  <div className="card-details-grid">
+                    <div className="col">
+                      <label>CONTRACTOR ID:</label>
+                      <span>{item.contractorId}</span>
+                    </div>
+                    <div className="col">
+                      <label>PRICE PER SQUARE:</label>
+                      <span>${item.pricePerSq}</span>
+                    </div>
+                  </div>
+      
+                  <div className="card-actions">
+                    <button className="btn-white" onClick={handleButtonClick}>View Details <RiArrowRightUpLine size={16} /></button>
+                    {!item.isRejected ? (
+                      <button 
+                        className="btn-orange" 
+                        onClick={() => setIsModalOpen(true)} // Open Modal
+                      >
+                        Accept Quote <RiArrowRightUpLine size={16} />
+                      </button>
+                    ) : (
+                      <div className="rejected-label">
+                        <span className="info-circle">i</span>
+                        Contractor has been rejected.
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+      
+            {/* --- SUCCESS MODAL OVERLAY --- */}
+            {isModalOpen && (
+              <div className="modal-overlay">
+                <div className="modal-box">
+                  <div className="modal-icon-container">
+                     <img src="public/bidcard-qa.svg" alt="Success" />
+                  </div>
+                  <h2>Quote Accepted Successfully</h2>
+                  <p>
+                    Your roofing project has been confirmed. The selected contractor 
+                    will contact you soon to coordinate the next steps and schedule the site visit.
+                  </p>
+                  <button className="modal-btn" onClick={handleButtonClick}>
+                    View Project <RiArrowRightUpLine size={18} />
+                  </button>
+                </div>
+              </div>
+            )}
+          </section>
     </div>
   );
 };

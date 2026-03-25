@@ -2243,7 +2243,6 @@
   ==================================================== */
 
   .jb-container {
-  padding: 24px;
   background-color: #FAF8F5;
   min-height: 100vh;
   font-family: sans-serif;
@@ -2437,10 +2436,10 @@
 .jb-icon-orange { color: #ff6b35; }
 
 /* Status */
-.jb-status-container { margin-left: auto; text-align: right; }
-.jb-tag-open { background: #e6f7ef; color: #008a4e; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; }
-.jb-dot { width: 8px; height: 8px; background: #008a4e; border-radius: 50%; }
-.jb-bids-count { font-size: 12px; color: #888; margin-top: 8px; font-weight: 500; }
+.jb-status-container { margin-left: auto; text-align: right; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+.jb-tag-open { background: #f7e6e6; color: #8a1000; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; width: fit-content; }
+.jb-dot { width: 8px; height: 8px; background: #8a0000; border-radius: 50%; }
+.jb-bids-count { font-size: 12px; color: #888; margin-top: 8px; font-weight: 500; display: flex; justify-content: center;}
 
 /* Image Grid */
 .jb-image-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
@@ -2449,6 +2448,7 @@
 .jb-image-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.5); color: white; display: flex; align-items: center; justify-content: center; gap: 6px; font-weight: 600; cursor: pointer; }
 
 /* Accordion */
+.jb-accordion{ display: flex; flex-direction: column; gap: 16px; margin-top: 24px;}
 .jb-accordion-item { border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; }
 .jb-accordion-header { padding: 18px 24px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; color: #1a2b2b; }
 .jb-bg-dark { background: #f9fafb; }
@@ -2457,46 +2457,14 @@
 .jb-accordion-item .RiArrowUpSLine { background: #1a2b2b; color: white; border-radius: 50%; padding: 4px; }
 
 /* Accordion Container Styling */
-.jb-accordion-item {
-  border: 1px solid #e5e7eb;
-  border-radius: 16px;
-  overflow: hidden;
-  background: #fff;
-  transition: all 0.3s ease;
-}
-
-.jb-accordion-header {
-  padding: 16px 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-  font-weight: 700;
-  font-size: 18px;
-  color: #1a2b2b;
-}
+.jb-accordion-item { border: 1px solid #e5e7eb; border-radius: 16px; overflow: hidden; background: #fff; transition: all 0.3s ease; }
+.jb-accordion-header {padding: 16px 24px;display: flex;justify-content: space-between;align-items: center;cursor: pointer;font-weight: 700;font-size: 18px;color: #1a2b2b;}
 
 /* Background when section is active */
-.jb-bg-active {
-  background-color: #ffffff;
-}
-
+.jb-bg-active {background-color: #ffffff;}
 /* Icon Backgrounds */
-.jb-circle-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-}
-
-.jb-bg-orange {
-  background-color: #ff6b35;
-  color: #fff;
-}
-
+.jb-circle-icon {width: 36px;height: 36px;border-radius: 50%;display: flex;align-items: center;justify-content: center;transition: all 0.2s ease;}
+.jb-bg-orange {background-color: #ff6b35;color: #fff;}
 .jb-bg-dark {
   background-color: #1a2b2b;
   color: #fff;
@@ -2594,6 +2562,189 @@
 
 /* Assign Button */
 .jb-btn-assign-main { width: 100%; background: #ff6b35; color: white; border: none; padding: 16px; border-radius: 30px; font-weight: 700; font-size: 15px; display: flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer; }
+
+
+/* Sidebar Assigned Styling */
+.jb-assigned-text {
+  font-size: 12px;
+  color: #666;
+  font-weight: 500;
+  margin-left: auto;
+}
+
+.jb-btn-assign-ghost {
+  width: 100%;
+  background: #f1f1f1;
+  color: #999;
+  border: none;
+  padding: 16px;
+  border-radius: 30px;
+  font-weight: 700;
+  cursor: not-allowed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Contractor Bids Section */
+.jb-bids-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.jb-bids-nav {
+  display: flex;
+  gap: 12px;
+}
+
+.jb-nav-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.jb-nav-circle.active {
+  background: #ff6b35;
+  color: #fff;
+  border-color: #ff6b35;
+}
+
+/* Bid Card */
+.jb-bids-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.jb-bid-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid #f0f0f0;
+}
+
+.jb-bid-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.jb-bid-profile {
+  display: flex;
+  gap: 12px;
+}
+
+.jb-bid-profile img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+.jb-bid-user h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #1a2b2b;
+}
+
+.jb-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: #888;
+  margin-top: 4px;
+}
+
+.jb-star { color: #FFB800; }
+
+.jb-bid-price {
+  font-size: 20px;
+  font-weight: 800;
+  color: #ff6b35;
+}
+
+.jb-service-tag {
+  background: #f5f3ee;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #666;
+}
+
+.jb-bid-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.jb-bid-details-grid label {
+  display: block;
+  font-size: 10px;
+  color: #999;
+  text-transform: uppercase;
+}
+
+.jb-bid-details-grid p {
+  font-size: 13px;
+  font-weight: 700;
+  margin: 2px 0 0 0;
+}
+
+.jb-bid-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.jb-btn-outline-details {
+  border: 1px solid #ddd;
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.jb-btn-accept {
+  background: #ff6b35;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.jb-rejected-msg {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #666;
+  justify-content: center;
+}
 
 /* ======================================================
     Pricing and logic management  
