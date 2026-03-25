@@ -272,12 +272,12 @@ const DashAdmin = () => {
           <div className="da-chart-visual">
             <ResponsiveContainer width="100%" height={250}>
               <AreaChart data={jobLeadsData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
-                <defs><linearGradient id="colorVal" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#ff5c28" stopOpacity={0.3}/><stop offset="95%" stopColor="#ff5c28" stopOpacity={0}/></linearGradient></defs>
+                <defs><linearGradient id="colorVal" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#fa5a25" stopOpacity={0.3}/><stop offset="95%" stopColor="#fa5a25" stopOpacity={0}/></linearGradient></defs>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
                 <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fill: '#999', fontSize: 12}} dy={10} />
-                <YAxis axisLine={false} tickLine={false} tick={{fill: '#999', fontSize: 12}} tickFormatter={(v) => `$${v}k`} />
-                <Tooltip content={<CustomTooltip />} cursor={{ stroke: '#ff5c28', strokeWidth: 1 }} />
-                <Area type="monotone" dataKey="value" stroke="#ff5c28" strokeWidth={3} fill="url(#colorVal)" activeDot={{ r: 6, stroke: '#fff', strokeWidth: 2, fill: '#ff5c28' }} />
+                <YAxis axisLine={false} tickLine={false} tick={{fill: '#676767', fontSize: 12}} tickFormatter={(v) => `$${v}k`} />
+                <Tooltip content={<CustomTooltip />} cursor={{ stroke: '#fa5a25', strokeWidth: 1 }} />
+                <Area type="monotone" dataKey="value" stroke="#fa5a25" strokeWidth={3} fill="url(#colorVal)" activeDot={{ r: 6, stroke: '#fff', strokeWidth: 2, fill: '#fa5a25' }} />
               </AreaChart>
             </ResponsiveContainer>
           </div>
@@ -288,7 +288,7 @@ const DashAdmin = () => {
             <ResponsiveContainer width="100%" height={250}>
               <BarChart data={contractorsData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
-                <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fill: '#999', fontSize: 12}} dy={10} />
+                <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fill: '#676767', fontSize: 12}} dy={10} />
                 <YAxis axisLine={false} tickLine={false} tick={{fill: '#999', fontSize: 12}} tickFormatter={(v) => `$${v}k`} />
                 <Tooltip content={<CustomBarTooltip />} cursor={{ fill: '#f9f9f9' }} />
                 <Bar dataKey="value" fill="#122621" barSize={8} radius={[10, 10, 0, 0]} />

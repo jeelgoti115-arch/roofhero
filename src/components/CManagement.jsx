@@ -2,7 +2,8 @@ import React, { useState, useMemo } from 'react';
 import { 
   RiArrowRightUpLine, RiSearchLine, RiArrowLeftSLine, RiArrowRightSLine,
   RiArrowLeftLine, RiVerifiedBadgeFill, RiMailLine, RiPhoneLine, 
-  RiDeleteBin6Fill, RiCloseLine, RiStarFill, RiCameraFill, RiUploadCloud2Line
+  RiDeleteBin6Fill, RiCloseLine, RiStarFill, RiCameraFill, RiUploadCloud2Line,
+  RiCloseCircleLine
 } from '@remixicon/react';
 
 const CManagement = () => {
@@ -105,7 +106,7 @@ const CManagement = () => {
       <div className="da-cm-reviews-grid">
         {reviewList.map((rev, i) => (
           <div key={i} className="da-cm-review-card">
-            <button className="da-cm-card-del">×</button>
+            <button className="da-cm-card-del"><RiCloseCircleLine /></button>
             <div className="da-cm-rev-user">
               <img src={`https://i.pravatar.cc/150?u=${rev.name}`} alt="user" />
               <div><h4>{rev.name}</h4><div className="da-cm-stars">⭐⭐⭐⭐⭐ <span>{rev.stars}</span></div></div>
@@ -125,7 +126,7 @@ const CManagement = () => {
       <div className="da-cm-docs-list">
         {[1, 2, 3].map(i => (
           <div key={i} className="da-cm-doc-card">
-             <button className="da-cm-card-del">×</button>
+             <button className="da-cm-card-del"><RiCloseCircleLine /></button>
              <div className="da-cm-doc-info">
                <div className="da-cm-pdf-icon">PDF</div>
                <div><h4>RooferCoinsurance.pdf</h4><p>Public Liability Insurance</p></div>

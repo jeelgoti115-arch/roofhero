@@ -2,7 +2,7 @@
   flex: 1;
   transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   min-height: 100vh;
-  background-color: #fff;
+  background-color: #FAF8F5;
 }
 
 /* Apply this class to the parent wrapper in AdminDash.jsx */
@@ -26,7 +26,7 @@
 /* Header */
 .adm-hdr-container {
   height: 70px;
-  background-color: #f9f9f9; /* Matching sidebar light grey */
+  background-color: #FAF8F5; /* Matching sidebar light grey */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -115,7 +115,7 @@
 .adm-sb-container {
   width: 260px;
   height: 100vh;
-  background-color: #f9f9f9;
+  background-color: #FAF8F5;
   border-right: 1px solid #eee;
   position: fixed; /* Fixes it to the left */
   left: 0;
@@ -1164,14 +1164,14 @@
 /* Documents List */
 .da-cm-docs-list {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 15px;
 }
 
 .da-cm-doc-card {
   border: 1px solid #eee;
   border-radius: 12px;
-  padding: 15px;
+  padding: 5px;
   position: relative;
   background: #fff;
 }
@@ -1200,16 +1200,13 @@
   position: absolute;
   top: 15px;
   right: 15px;
-  border: 1.5px solid #ff5c28;
+  border: none;
   color: #ff5c28;
   background: transparent;
-  width: 20px;
-  height: 20px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
   cursor: pointer;
 }
 
@@ -1616,7 +1613,7 @@
 .adm-ho-main-container {
   flex: 1;
   min-width: 0; /* Forces the content to stay inside the screen when sidebar opens */
-  background-color: #f9fafb;
+  background-color: #FAF8F5;
   padding: 16px;
   display: flex;
   flex-direction: column;
@@ -1673,8 +1670,8 @@
 .adm-ho-table th:nth-child(8) { width: 10%; } /* Action */
 
 /* 5. Address Detail - No Content Removed */
-.adm-ho-address-cell {
-  color: #6b7280;
+.address-cell {
+  color: #676767;
   line-height: 1.4;
 }
 
@@ -2247,7 +2244,7 @@
 
   .jb-container {
   padding: 24px;
-  background-color: #f9fafb;
+  background-color: #FAF8F5;
   min-height: 100vh;
   font-family: sans-serif;
 }
@@ -2398,7 +2395,7 @@
   margin-top: 24px;
 }
 
-.pagi-num, .pagi-arrow {
+.jb-pagi-num, .jb-pagi-arrow {
   width: 36px;
   height: 36px;
   display: flex;
@@ -2410,11 +2407,193 @@
   cursor: pointer;
 }
 
-.pagi-num.active {
+.jb-pagi-num:hover {
+  color: #fa5a25;
+  border: 1px solid #fa5a25;
+}
+
+.jb-pagi-arrow:hover {
+  color: #fa5a25;
+  border: 1px solid #fa5a25;
+}
+
+.jb-pagi-num.active {
   background: #ff6b35;
   color: white;
   border-color: #ff6b35;
 }
+.jb-details-header{ display: flex; align-items: center; gap: 15px;}
+.jb-back-btn { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background-color: #ffffff; border: none; box-shadow: 0px 12px 40px 0px #6B728012; }
+.jb-details-container { padding: 32px; background-color: #FAF8F5; }
+.jb-details-layout { display: grid; grid-template-columns: 1fr 380px; gap: 24px; margin-top: 20px; gap: 15px;}
+.jb-p-24 { padding: 24px; }
+
+/* Profile Row */
+.jb-profile-row { display: flex; align-items: center; gap: 16px; margin-bottom: 30px; border-bottom: 1px solid #f0f0f0; padding-bottom: 20px; }
+.jb-avatar { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; }
+.jb-profile-info h3 { font-size: 22px; font-weight: 700; color: #1a2b2b; margin: 0; }
+.jb-contact-row { display: flex; align-items: center; gap: 10px; font-size: 14px; color: #666; margin-top: 6px; }
+.jb-divider { color: #ddd; }
+.jb-icon-orange { color: #ff6b35; }
+
+/* Status */
+.jb-status-container { margin-left: auto; text-align: right; }
+.jb-tag-open { background: #e6f7ef; color: #008a4e; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; }
+.jb-dot { width: 8px; height: 8px; background: #008a4e; border-radius: 50%; }
+.jb-bids-count { font-size: 12px; color: #888; margin-top: 8px; font-weight: 500; }
+
+/* Image Grid */
+.jb-image-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.jb-image-grid-4 img { width: 100%; height: 160px; border-radius: 12px; object-fit: cover; }
+.jb-image-card-more { position: relative; border-radius: 12px; overflow: hidden; height: 160px; }
+.jb-image-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.5); color: white; display: flex; align-items: center; justify-content: center; gap: 6px; font-weight: 600; cursor: pointer; }
+
+/* Accordion */
+.jb-accordion-item { border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; }
+.jb-accordion-header { padding: 18px 24px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; color: #1a2b2b; }
+.jb-bg-dark { background: #f9fafb; }
+.jb-circle-icon { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.jb-bg-orange { background: #ff6b35; color: white; }
+.jb-accordion-item .RiArrowUpSLine { background: #1a2b2b; color: white; border-radius: 50%; padding: 4px; }
+
+/* Accordion Container Styling */
+.jb-accordion-item {
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  transition: all 0.3s ease;
+}
+
+.jb-accordion-header {
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 18px;
+  color: #1a2b2b;
+}
+
+/* Background when section is active */
+.jb-bg-active {
+  background-color: #ffffff;
+}
+
+/* Icon Backgrounds */
+.jb-circle-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.jb-bg-orange {
+  background-color: #ff6b35;
+  color: #fff;
+}
+
+.jb-bg-dark {
+  background-color: #1a2b2b;
+  color: #fff;
+}
+
+/* Content Grid */
+.jb-accordion-content {
+  padding: 0 24px 24px 24px;
+  border-top: none;
+}
+
+.jb-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 40px;
+}
+
+.jb-grid-2 label {
+  font-weight: 700;
+  font-size: 13px;
+  color: #1a2b2b;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.jb-grid-2 p {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+
+/* Documents Row Styling */
+.jb-doc-flex {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 0 24px 24px 24px;
+}
+
+.jb-doc-pill-card {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  min-width: 240px;
+  background: #fff;
+}
+
+.jb-doc-icon-box {
+  background: #f9fafb;
+  padding: 6px;
+  border-radius: 8px;
+  margin-right: 12px;
+}
+
+.jb-doc-text {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.jb-doc-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a2b2b;
+}
+
+.jb-doc-sub {
+  font-size: 11px;
+  color: #888;
+}
+
+.jb-doc-close {
+  color: #ff6b35;
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+.jb-col-span-2 { grid-column: span 2; }
+
+.jb-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 24px; border-top: 1px solid #f0f0f0; }
+.jb-grid-2 label { color: #1a2b2b; font-weight: 700; font-size: 13px; margin-bottom: 4px; display: block; }
+.jb-grid-2 p { color: #666; font-size: 14px; margin: 0; }
+
+/* Sidebar */
+.jb-search-box-side input {  width: 92%; padding: 14px; background: #f5f3ee; border: none; border-radius: 8px; font-size: 14px; margin-bottom: 20px; }
+.jb-contractor-item { padding: 14px 0; border-bottom: 1px solid #f0f0f0; }
+.jb-flex-row { display: flex; align-items: center;}
+.jb-avatar-sm { width: 44px; height: 44px; border-radius: 50%; }
+.jb-c-info { flex: 1; margin-left: 12px; }
+.jb-c-name { font-weight: 700; font-size: 15px; margin: 0; color: #1a2b2b; }
+.jb-c-loc { font-size: 12px; color: #888; margin: 0; }
+.jb-checkbox { width: 20px; height: 20px; accent-color: #ff6b35; cursor: pointer; }
+
+/* Assign Button */
+.jb-btn-assign-main { width: 100%; background: #ff6b35; color: white; border: none; padding: 16px; border-radius: 30px; font-weight: 700; font-size: 15px; display: flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer; }
 
 /* ======================================================
     Pricing and logic management  
