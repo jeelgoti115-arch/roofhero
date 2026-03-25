@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from 'react';
 import '../Styles/Admin.css'
 import DashboardHeader from '../components/DashboardHeader';
 import AdminSidebar from '../components/AdminSidebar';
@@ -9,15 +10,21 @@ import CManagement from '../components/CManagement';
 import JobBidding from '../components/JobBidding';
 import PLManagement from '../components/PLManagement';
 import Users from '../components/Users';
-import AdminHeader from '../components/AdminHeader';
 import AdminNotification from '../components/AdminNotification';
 
 const AdminDash = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [showNotifications, setShowNotifications] = useState(false);
   
-  // New state to track which component is visible
-  const [activeTab, setActiveTab] = useState('dashboard');
+  // 1. Initialize state from localStorage, fallback to 'dashboard'
+  const [activeTab, setActiveTab] = useState(() => {
+    return localStorage.getItem('adminActiveTab') || 'dashboard';
+  });
+
+  // 2. Save activeTab to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('adminActiveTab', activeTab);
+  }, [activeTab]);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -46,7 +53,6 @@ const AdminDash = () => {
   };
 
   return (
-    /* This wrapper now controls the overall layout */
     <div className={`dashboard-wrapper ${isSidebarOpen ? 'sidebar-closed' : 'sidebar-open'}`}>
       <AdminSidebar 
         isOpen={isSidebarOpen} 
@@ -55,7 +61,7 @@ const AdminDash = () => {
       />
       
       <div className="dashboard-main-content">
-        <AdminHeader 
+        <DashboardHeader 
           onToggleSidebar={toggleSidebar} 
           onToggleNotifications={toggleNotifications} 
           isNotificationActive={showNotifications}

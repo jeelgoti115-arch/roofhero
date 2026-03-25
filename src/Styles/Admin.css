@@ -2439,6 +2439,8 @@
 .jb-status-container { margin-left: auto; text-align: right; display: flex; flex-direction: column; justify-content: center; align-items: center; }
 .jb-tag-open { background: #f7e6e6; color: #8a1000; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; width: fit-content; }
 .jb-dot { width: 8px; height: 8px; background: #8a0000; border-radius: 50%; }
+.jb-tag-open-green { background: #34C7591A; color: #34C759; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; width: fit-content; }
+.jb-dot-green { width: 8px; height: 8px; background: #34C759; border-radius: 50%; }
 .jb-bids-count { font-size: 12px; color: #888; margin-top: 8px; font-weight: 500; display: flex; justify-content: center;}
 
 /* Image Grid */
