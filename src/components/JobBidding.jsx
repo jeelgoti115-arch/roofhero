@@ -13,8 +13,6 @@ import {
   RiAddCircleFill,
   RiMailFill,
   RiPhoneFill,
-  RiStarFill,
-  RiInformationFill,
 } from '@remixicon/react';
 
 const AwaitingAssignmentView = ({ job, onBack }) => {
