@@ -823,7 +823,9 @@ const JobBidding = () => {
           <div className="jb-show-entries">
             <span>Show</span>
             <select value={itemsPerPage} onChange={(e) => setItemsPerPage(Number(e.target.value))} className="jb-dropdown">
-              <option value={5}>5</option><option value={10}>10</option>
+              <option value={5}>5</option>
+              <option value={10}>10</option>
+              <option value={25}>25</option>
             </select>
           </div>
           <div className="jb-search-box">

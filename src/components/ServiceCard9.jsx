@@ -34,7 +34,7 @@ const ServiceCard9 = () => {
           <div className='sc9-input-row'>
             <div className='sc9-input-group single-col'>
               <label htmlFor="phone">Phone Number</label>
-              <input type="tel" id="phone" placeholder="e.g., +61 400 123 456" required />
+              <input type="tel" id="phone" placeholder="Enter 10 digit mobile number" pattern="[1-9]{10}" maxLength="10" required />
             </div>
           </div>
 

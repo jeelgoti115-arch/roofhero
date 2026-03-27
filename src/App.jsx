@@ -10,6 +10,7 @@ import OpenProjectDetails from './pages/OpenProjectDetails';
 import ScrollToTop from './components/ScrollToTop';
 import AdminDash from './pages/AdminDash';
 import ContractorDash from './pages/ContractorDash';
+import ContractorRegister from './pages/ContractorRegister';
 
 const App = () => {
 
@@ -25,6 +26,7 @@ const App = () => {
         <Route path="/project-details" element={<OpenProjectDetails />} />
         <Route path="/admin" element={<AdminDash />} />
         <Route path="/contractor" element={<ContractorDash />} />
+        <Route path="/contractor-signup" element={<ContractorRegister />} />
       </Routes>
     </Router>
   );

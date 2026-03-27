@@ -74,9 +74,9 @@ const Navbar = () => {
             {isDropdownOpen && (
               <div className="dropdown-menu">
                 <a href="#contact1">Contact 1</a>
-                <a href="#contact2">Contact 2</a>
-                <a href="#contact3">Contact 3</a>
-                <a href="#contact3">Contact 4</a>
+                <a href="#contact2">Login</a>
+                <a href="#contact3">Admin Login</a>
+                <a href="#contact3">Contractor Login</a>
               </div>
             )}
           </div>

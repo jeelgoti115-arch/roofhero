@@ -11,6 +11,7 @@ import JobBidding from '../components/JobBidding';
 import PLManagement from '../components/PLManagement';
 import Users from '../components/Users';
 import AdminNotification from '../components/AdminNotification';
+import AdminHeader from '../components/AdminHeader';
 
 const AdminDash = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -61,7 +62,7 @@ const AdminDash = () => {
       />
       
       <div className="dashboard-main-content">
-        <DashboardHeader 
+        <AdminHeader 
           onToggleSidebar={toggleSidebar} 
           onToggleNotifications={toggleNotifications} 
           isNotificationActive={showNotifications}

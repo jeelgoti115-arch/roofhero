@@ -67,8 +67,10 @@ const ProposalDetailsView = ({ item, onBack, onUpdateStatus }) => {
           <div className="con-dash-readonly-group">
             <label>Custom Proposal Message</label>
             <p className="con-dash-msg-text">
-              Thank you for considering us for your roofing project. We will carefully remove 
-              the existing tile roof and replace it with a new Colorbond metal roof...
+              Thank you for considering us for your roofing project. We will carefully remove the existing tile roof and replace it with a new Colorbond metal roof, ensuring high-quality workmanship and full compliance with safety standards. Our team will also inspect the underlying structure and carry out any minor repairs if needed. We’ll maintain a clean worksite throughout and complete the job efficiently.
+            </p>
+            <p className="con-dash-msg-text">
+              Please feel free to reach out if you have any questions. We look forward to working on your home.
             </p>
           </div>
           <div className={item.status === 'Accepted' ? 'jb-status-green-pill text-center w-full py-3 mt-4' : 'con-dash-status-indicator'}>
@@ -156,7 +158,7 @@ const ProposalDetailsView = ({ item, onBack, onUpdateStatus }) => {
                 </div>
               </div>
               <div className="jb-status-container">
-                <div className="jb-status-tag jb-tag-open">New Inquiry</div>
+                <div className="con-dash-tag-open">{item.status}</div>
                 <p className="jb-bids-count">12 Contractor Bids Received</p>
               </div>
             </div>

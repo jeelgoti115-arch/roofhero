@@ -3,7 +3,9 @@ import {
   RiArrowRightUpLine, RiSearchLine, RiArrowLeftSLine, RiArrowRightSLine,
   RiArrowLeftLine, RiVerifiedBadgeFill, RiMailLine, RiPhoneLine, 
   RiDeleteBin6Fill, RiCloseLine, RiStarFill, RiCameraFill, RiUploadCloud2Line,
-  RiCloseCircleLine
+  RiCloseCircleLine,
+  RiStarSFill,
+  RiStarHalfSLine
 } from '@remixicon/react';
 
 const CManagement = () => {
@@ -15,6 +17,50 @@ const CManagement = () => {
   const [activeTab, setActiveTab] = useState('About the Contractor');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [rating, setRating] = useState(0);
+  const [searchTerm, setSearchTerm] = useState(""); 
+  
+  // Review Logic States
+  const [newReview, setNewReview] = useState({ name: '', text: '', photo: '/dashboard1-profile.png' });
+  const [reviewList, setReviewList] = useState([
+    { name: 'Eunice J. Williams', text: 'The team was punctual, professional, and finished the project before deadline. ', stars: 4.7, photo: 'public/eunice.jpg' },
+    { name: 'Nancy N. Ellis', text: 'Fantastic job overall. They followed the quote and maintained good workmanship. ', stars: 4.7, photo: 'public/nancy.jpg' },
+    { name: 'James R. Okelly', text: 'Work was well done and priced fairly.', stars: 4.7, photo: 'public/james.jpg' },
+    { name: 'Derek J. Youngquist', text: 'Very smooth experience. The team communicated well, handled everything quickly, and showed us progress photos. ', stars: 4.7, photo: 'public/contractor2.jpg' },
+  ]);
+
+  // --- HANDLERS ---
+  const handlePhotoUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setNewReview(prev => ({ ...prev, photo: reader.result }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleAddReview = () => {
+    if (!newReview.text) return alert("Please enter a review message.");
+    
+    const reviewToAdd = {
+      name: newReview.name || "Anonymous User",
+      text: newReview.text,
+      stars: rating || 5,
+      photo: newReview.photo
+    };
+
+    setReviewList(prev => [reviewToAdd, ...prev]); 
+
+    // Reset and Close
+    setIsModalOpen(false);
+    setRating(0);
+    setNewReview({ name: '', text: '', photo: '/dashboard1-profile.png' });
+  };
+
+  const handleDeleteReview = (indexToDelete) => {
+    setReviewList(prev => prev.filter((_, i) => i !== indexToDelete));
+  };
 
   // --- MOCK DATA ---
   const [contractors] = useState([
@@ -25,23 +71,28 @@ const CManagement = () => {
     { id: '#L1005', name: 'Sarah O’Connor', mobile: '0411 333 222', email: 's.oconnor@serv.com', suburbs: 'Penrith, Mt Druitt', date: '21-04-2025', status: 'Pending' },
   ]);
 
-  const [reviewList] = useState([
-    { name: 'Eunice J. Williams', text: 'The team was punctual, professional, and finished the project before deadline.', stars: 4.7 },
-    { name: 'Nancy N. Ellis', text: 'Fantastic job overall. They followed the quote and maintained good workmanship.', stars: 4.7 },
-  ]);
-
-  // --- PAGINATION LOGIC ---
+  // --- SEARCH & PAGINATION LOGIC ---
   const { visibleContractors, totalPages, pageNumbers } = useMemo(() => {
-    const total = Math.ceil(contractors.length / itemsPerPage);
+    const filtered = contractors.filter(item => 
+        item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.suburbs.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.mobile.includes(searchTerm)
+    );
+
+    const total = Math.ceil(filtered.length / itemsPerPage);
     const start = (currentPage - 1) * itemsPerPage;
-    const visible = contractors.slice(start, start + itemsPerPage);
+    const visible = filtered.slice(start, start + itemsPerPage);
+    
     let sPage = Math.max(1, currentPage - 1);
     let ePage = Math.min(total, sPage + 2);
     if (ePage - sPage < 2) sPage = Math.max(1, ePage - 2);
+    
     const nums = [];
     for (let i = sPage; i <= ePage; i++) { if (i > 0) nums.push(i); }
+    
     return { visibleContractors: visible, totalPages: total, pageNumbers: nums };
-  }, [currentPage, itemsPerPage, contractors]);
+  }, [currentPage, itemsPerPage, contractors, searchTerm]);
 
   // --- TAB RENDERERS ---
   const renderAboutTab = (data) => (
@@ -58,42 +109,12 @@ const CManagement = () => {
         <button className="da-cm-btn-orange">Upload Image <RiUploadCloud2Line size={18} /></button>
       </div>
       <div className="da-cm-gallery-grid">
-         <div className="da-cm-gallery-item">
-            <img src='public/roofie1.jpg' alt='work' />
-            <button className="da-cm-gallery-del"><RiDeleteBin6Fill /></button>
-          </div>
-          <div className="da-cm-gallery-item">
-            <img src='public/roofie2.jpg' alt='work' />
-            <button className="da-cm-gallery-del"><RiDeleteBin6Fill /></button>
-          </div>
-          <div className="da-cm-gallery-item">
-            <img src='public/roofie3.jpg' alt='work' />
-            <button className="da-cm-gallery-del"><RiDeleteBin6Fill /></button>
-          </div>
-          <div className="da-cm-gallery-item">
-            <img src='public/roofie4.jpg' alt='work' />
-            <button className="da-cm-gallery-del"><RiDeleteBin6Fill /></button>
-          </div>
-          <div className="da-cm-gallery-item">
-            <img src='public/roofie5.jpg' alt='work' />
-            <button className="da-cm-gallery-del"><RiDeleteBin6Fill /></button>
-          </div>
-          <div className="da-cm-gallery-item">
-            <img src='public/roofie6.jpg' alt='work' />
-            <button className="da-cm-gallery-del"><RiDeleteBin6Fill /></button>
-          </div>
-          <div className="da-cm-gallery-item">
-            <img src='public/roofie7.jpg' alt='work' />
-            <button className="da-cm-gallery-del"><RiDeleteBin6Fill /></button>
-          </div>
-          <div className="da-cm-gallery-item">
-            <img src='public/roofie8.jpg' alt='work' />
-            <button className="da-cm-gallery-del"><RiDeleteBin6Fill /></button>
-          </div>
-          <div className="da-cm-gallery-item">
-            <img src='public/roofie9.jpg' alt='work' />
-            <button className="da-cm-gallery-del"><RiDeleteBin6Fill /></button>
-          </div>
+         {[1,2,3,4,5,6,7,8,9].map(i => (
+            <div key={i} className="da-cm-gallery-item">
+                <img src={`public/roofie${i}.jpg`} alt='work' />
+                <button className="da-cm-gallery-del"><RiDeleteBin6Fill /></button>
+            </div>
+         ))}
       </div>
     </div>
   );
@@ -106,10 +127,16 @@ const CManagement = () => {
       <div className="da-cm-reviews-grid">
         {reviewList.map((rev, i) => (
           <div key={i} className="da-cm-review-card">
-            <button className="da-cm-card-del"><RiCloseCircleLine /></button>
+            <button className="da-cm-card-del" onClick={() => handleDeleteReview(i)}><RiCloseCircleLine /></button>
             <div className="da-cm-rev-user">
-              <img src={`https://i.pravatar.cc/150?u=${rev.name}`} alt="user" />
-              <div><h4>{rev.name}</h4><div className="da-cm-stars">⭐⭐⭐⭐⭐ <span>{rev.stars}</span></div></div>
+              <img src={rev.photo} alt="user" />
+              <div>
+                <h4>{rev.name}</h4>
+                <div className="da-cm-stars">
+                  <RiStarSFill size={14}/><RiStarSFill size={14}/><RiStarSFill size={14}/><RiStarSFill size={14}/><RiStarHalfSLine size={14} /> 
+                  <span>{rev.stars}</span>
+                </div>
+              </div>
             </div>
             <p className="da-cm-rev-text">{rev.text}</p>
           </div>
@@ -158,7 +185,7 @@ const CManagement = () => {
           <div className="da-cm-edit-group" style={{marginTop:'20px'}}><label>Short Bio or Business Description</label><textarea rows="4" defaultValue={selectedContractor.bio} readOnly></textarea></div>
           
           <h3 className="da-cm-section-title" style={{marginTop:'30px'}}>Work Preferences</h3>
-          <div className="da-cm-work-grid"> {/* Use this class here */}
+          <div className="da-cm-work-grid">
             <div className="da-cm-edit-group">
               <label>Suburbs or Regions You Serve</label>
               <input type="text" defaultValue="..." />
@@ -201,13 +228,64 @@ const CManagement = () => {
         {isModalOpen && (
           <div className="da-cm-modal-overlay">
             <div className="da-cm-modal-card animate-slide-up">
-              <div className="da-cm-modal-header"><h3>Add Contractor Reviews</h3><button className="da-cm-modal-close" onClick={() => setIsModalOpen(false)}><RiCloseLine size={24}/></button></div>
+              <div className="da-cm-modal-header">
+                <h3>Add Contractor Reviews</h3>
+                <button className="da-cm-modal-close" onClick={() => setIsModalOpen(false)}>
+                  <RiCloseLine size={24}/>
+                </button>
+              </div>
+
               <div className="da-cm-modal-body">
-                <div className="da-cm-modal-photo-upload"><div className="da-cm-photo-preview"><img src="/dashboard1-profile.png" alt="p" /><div className="da-cm-photo-badge"><RiCameraFill size={14}/></div></div><p>Profile Photo Upload</p></div>
-                <div className="da-cm-star-rating">{[1, 2, 3, 4, 5].map(s => <RiStarFill key={s} size={28} className={s <= rating ? 'star-active' : 'star-inactive'} onClick={() => setRating(s)}/>)}</div>
-                <div className="da-cm-modal-input-group"><label>Full Name</label><input type="text" defaultValue={selectedContractor.name} /></div>
-                <div className="da-cm-modal-input-group"><label>Review Message</label><textarea placeholder="Write review here..." rows="4"></textarea></div>
-                <button className="da-cm-btn-submit" onClick={() => setIsModalOpen(false)}>Add Reviews <RiArrowRightUpLine size={20}/></button>
+                <div className="da-cm-modal-photo-upload">
+                  <label htmlFor="photo-input" className="da-cm-photo-preview" style={{ cursor: 'pointer' }}>
+                    <img src={newReview.photo} alt="preview" />
+                    <div className="da-cm-photo-badge"><RiCameraFill size={14}/></div>
+                  </label>
+                  <input 
+                    type="file" 
+                    id="photo-input" 
+                    style={{ display: 'none' }} 
+                    accept="image/*" 
+                    onChange={handlePhotoUpload} 
+                  />
+                  <p>Profile Photo Upload</p>
+                </div>
+
+                <div className="da-cm-star-rating">
+                  {[1, 2, 3, 4, 5].map(s => (
+                    <RiStarFill 
+                      key={s} 
+                      size={28} 
+                      className={s <= rating ? 'star-active' : 'star-inactive'} 
+                      onClick={() => setRating(s)}
+                      style={{ cursor: 'pointer' }}
+                    />
+                  ))}
+                </div>
+
+                <div className="da-cm-modal-input-group">
+                  <label>Full Name</label>
+                  <input 
+                    type="text" 
+                    placeholder="Reviewer Name"
+                    value={newReview.name} 
+                    onChange={(e) => setNewReview(prev => ({ ...prev, name: e.target.value }))}
+                  />
+                </div>
+
+                <div className="da-cm-modal-input-group">
+                  <label>Review Message</label>
+                  <textarea 
+                    placeholder="Write review here..." 
+                    rows="4"
+                    value={newReview.text}
+                    onChange={(e) => setNewReview(prev => ({ ...prev, text: e.target.value }))}
+                  ></textarea>
+                </div>
+
+                <button className="da-cm-btn-submit" onClick={handleAddReview}>
+                  Add Reviews <RiArrowRightUpLine size={20}/>
+                </button>
               </div>
             </div>
           </div>
@@ -257,25 +335,40 @@ const CManagement = () => {
               <option value={5}>5</option><option value={10}>10</option><option value={25}>25</option>
             </select>
           </div>
-          <div className="da-cm-search-box"><RiSearchLine size={18} className="da-cm-search-icon"/><input type="text" placeholder="Search" className="da-cm-input" /></div>
+          <div className="da-cm-search-box">
+            <RiSearchLine size={18} className="da-cm-search-icon"/>
+            <input 
+              type="text" 
+              placeholder="Search" 
+              className="da-cm-input" 
+              value={searchTerm}
+              onChange={(e) => {setSearchTerm(e.target.value); setCurrentPage(1);}}
+            />
+          </div>
         </div>
         <div className="da-cm-table-wrapper">
           <table className="da-cm-table">
             <thead><tr><th>Contractor ID</th><th>Contractor Name</th><th>Mobile Number</th><th>Suburbs Covered</th><th>Date Approved</th><th>Status</th><th>Action</th></tr></thead>
             <tbody>
-              {visibleContractors.map((item, idx) => (
-                <tr key={idx}>
-                  <td className="da-cm-id-text">{item.id}</td><td className="da-cm-name-text">{item.name}</td><td>{item.mobile}</td><td>{item.suburbs}</td><td>{item.date}</td>
-                  <td><span className={item.status === 'Active' ? 'da-cm-pill-active' : 'da-cm-pill-pending'}>{item.status}</span></td>
-                  <td><button className="da-cm-btn-action" onClick={() => setSelectedContractor(item)}>View Details <RiArrowRightUpLine size={16}/></button></td>
+              {visibleContractors.length > 0 ? (
+                visibleContractors.map((item, idx) => (
+                  <tr key={idx}>
+                    <td className="da-cm-id-text">{item.id}</td><td className="da-cm-name-text">{item.name}</td><td>{item.mobile}</td><td>{item.suburbs}</td><td>{item.date}</td>
+                    <td><span className={item.status === 'Active' ? 'da-cm-pill-active' : 'da-cm-pill-pending'}>{item.status}</span></td>
+                    <td><button className="da-cm-btn-action" onClick={() => setSelectedContractor(item)}>View Details <RiArrowRightUpLine size={16}/></button></td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                    <td colSpan="7" style={{textAlign:'center', padding:'20px', color:'#666'}}>No contractors found matching your search.</td>
                 </tr>
-              ))}
+              )}
             </tbody>
           </table>
           <div className="da-cm-pagination-footer">
             <button className="da-cm-pagi-btn" onClick={() => setCurrentPage(p => Math.max(p - 1, 1))} disabled={currentPage === 1}><RiArrowLeftSLine/></button>
             {pageNumbers.map(n => <button key={n} className={`da-cm-pagi-btn ${currentPage === n ? 'da-cm-pagi-active' : ''}`} onClick={() => setCurrentPage(n)}>{n}</button>)}
-            <button className="da-cm-pagi-btn" onClick={() => setCurrentPage(p => Math.min(p + 1, totalPages))} disabled={currentPage === totalPages}><RiArrowRightSLine/></button>
+            <button className="da-cm-pagi-btn" onClick={() => setCurrentPage(p => Math.min(p + 1, totalPages))} disabled={currentPage === totalPages || totalPages === 0}><RiArrowRightSLine/></button>
           </div>
         </div>
       </div>

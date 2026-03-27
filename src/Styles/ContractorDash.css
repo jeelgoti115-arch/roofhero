@@ -250,3 +250,5 @@
 .jb-status-green-pill { background: #f5f3ee; padding: 12px; border-radius: 30px; text-align: center; color: #10b981; font-weight: 700; font-size: 13px; margin-top: 20px; }
 .jb-status-red-pill { background: #f5f3ee; padding: 12px; border-radius: 30px; text-align: center; color: #b91010; font-weight: 700; font-size: 13px; margin-top: 20px; }
 .con-dash-price-badge { background: #ff6b35; color: #fff; padding: 6px 14px; border-radius: 6px; font-weight: 800; font-size: 14px; display: inline-block; margin-top: 6px; }
+
+.con-dash-tag-open { background: #45B36926; color: #45B369; border: 1px solid #45B369; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; width: fit-content; }
