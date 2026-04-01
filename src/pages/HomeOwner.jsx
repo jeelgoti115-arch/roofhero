@@ -28,4 +28,4 @@ const HomeOwner = () => {
   )
 }
 
-export default 
+export default HomeOwner
